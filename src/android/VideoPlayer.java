@@ -1,4 +1,4 @@
-package com.moust.cordova.videoplayer;
+package com.cotosistemas.cordova.plugins;
 
 import android.annotation.TargetApi;
 import android.app.Dialog;

@@ -1,41 +1,41 @@
 {
-  "_from": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
-  "_id": "cordova-plugin-video-player@1.0.1",
+  "_from": "git+https://github.com/cotosistemas/androidPlugins.git",
+  "_id": "android-plugins@1.0.0",
   "_inBundle": false,
   "_integrity": "sha1-y3mvpXQOGZaPpOWCnapjpT7Qeeo=",
-  "_location": "/cordova-plugin-video-player",
+  "_location": "/android-plugins",
   "_phantomChildren": {},
   "_requested": {
     "type": "git",
-    "raw": "https://github.com/moust/cordova-plugin-videoplayer.git",
-    "rawSpec": "https://github.com/moust/cordova-plugin-videoplayer.git",
-    "saveSpec": "git+https://github.com/moust/cordova-plugin-videoplayer.git",
-    "fetchSpec": "https://github.com/moust/cordova-plugin-videoplayer.git",
+    "raw": "https://github.com/cotosistemas/androidPlugins.git",
+    "rawSpec": "https://github.com/cotosistemas/androidPlugins.git",
+    "saveSpec": "git+https://github.com/cotosistemas/androidPlugins.git",
+    "fetchSpec": "https://github.com/cotosistemas/androidPlugins.git",
     "gitCommittish": "master"
   },
   "_requiredBy": [
     "#USER",
     "/"
   ],
-  "_resolved": "git+https://github.com/moust/cordova-plugin-videoplayer.git#4e97e063ecddde4c3814605011fc3f0a9d72a35e",
-  "_spec": "https://github.com/moust/cordova-plugin-videoplayer.git",
+  "_resolved": "git+https://github.com/cotosistemas/androidPlugins.git#4e97e063ecddde4c3814605011fc3f0a9d72a35e",
+  "_spec": "https://github.com/cotosistemas/androidPlugins.git",
   "_where": "C:\\ProyectosCoto\\puntoDeVenta\\puntoDeVenta",
   "author": {
     "name": "Quentin Aupetit"
   },
   "bugs": {
-    "url": "https://github.com/moust/cordova-plugin-videoplayer/issues"
+    "url": "https://github.com/cotosistemas/androidPlugins/issues"
   },
   "bundleDependencies": false,
   "cordova": {
-    "id": "cordova-plugin-video-player",
+    "id": "android-plugins",
     "platforms": [
       "android",
       "ios"
     ]
   },
   "deprecated": false,
-  "description": "A Codova plugin that simply allows you to immediately play a video in fullscreen mode.",
+  "description": "Some android plugins.",
   "engines": {
     "cordovaDependencies": {
       "2.0.0": {
@@ -43,7 +43,7 @@
       }
     }
   },
-  "homepage": "https://github.com/moust/cordova-plugin-videoplayer#readme",
+  "homepage": "https://github.com/cotosistemas/androidPlugins#readme",
   "keywords": [
     "ecosystem:cordova",
     "cordova-android",
@@ -52,11 +52,11 @@
     "player",
     "fullscreen"
   ],
-  "license": "MIT",
-  "name": "cordova-plugin-video-player",
+  "license": "",
+  "name": "android-plugins",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moust/cordova-plugin-videoplayer.git"
+    "url": "git+https://github.com/cotosistemas/androidPlugins.git"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
