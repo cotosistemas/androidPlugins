@@ -21,7 +21,7 @@
   "_spec": "https://github.com/cotosistemas/androidPlugins.git",
   "_where": "C:\\ProyectosCoto\\puntoDeVenta\\puntoDeVenta",
   "author": {
-    "name": "Quentin Aupetit"
+    "name": "Coto Sistemas"
   },
   "bugs": {
     "url": "https://github.com/cotosistemas/androidPlugins/issues"
@@ -45,12 +45,7 @@
   },
   "homepage": "https://github.com/cotosistemas/androidPlugins#readme",
   "keywords": [
-    "ecosystem:cordova",
-    "cordova-android",
-    "cordova",
-    "video",
-    "player",
-    "fullscreen"
+    "cordova-android-plugins"
   ],
   "license": "",
   "name": "android-plugins",
@@ -61,5 +56,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "version": "1.0.1"
+  "version": "1.0.0"
 }

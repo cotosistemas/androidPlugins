@@ -4,10 +4,10 @@
     id="com.cotosistemas.cordova.plugins"
     version="1.0.1">
 
-    <name>Video Player</name>
-    <description>Native Video Player Plugin</description>
+    <name>Android Plugins</name>
+    <description>Android Plugins</description>
     <license></license>
-    <keywords>cordova,media,player,video</keywords>
+    <keywords>cordova,plugins</keywords>
     <repo>https://github.com/cotosistemas/androidPlugins.git</repo>
     <issue>https://github.com/cotosistemas/androidPlugins/issues</issue>
 
