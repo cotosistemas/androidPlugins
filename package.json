@@ -38,7 +38,10 @@
   "description": "Some android plugins.",
   "engines": {
     "cordovaDependencies": {
-      "2.0.0": {
+      "3.0.0": {
+        "cordova-android": ">=6.3.0"
+      },
+      "5.0.0": {
         "cordova": ">100"
       }
     }
@@ -47,6 +50,7 @@
   "keywords": [
     "cordova-android-plugins"
   ],
+
   "license": "",
   "name": "android-plugins",
   "repository": {
