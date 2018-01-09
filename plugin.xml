@@ -11,10 +11,6 @@
     <license></license>
   
     <keywords>cordova,plugins</keywords>
-	
-    <engines>
-		<engine name="cordova" version=">=3.4.0"/>
-	</engines>
   
     <repo>https://github.com/cotosistemas/androidPlugins.git</repo>
     <issue>https://github.com/cotosistemas/androidPlugins/issues</issue>
@@ -32,7 +28,7 @@
     <dependency id="cordova-plugin-file" version="^6.0.0" />
 
     <platform name="android">
-        <config-file target="res/xml/config.xml" parent="/*">
+        <config-file target="res/xml/config.xml" parent="/*/">
             <feature name="VideoPlayer">
                 <param name="android-package" value="com.cotosistemas.cordova.plugins.VideoPlayer"/>
             </feature>
