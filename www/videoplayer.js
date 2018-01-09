@@ -1,8 +1,8 @@
-var exec = require("cordova/exec");
+//var exec = require("cordova/exec");
 
 module.exports = {
 
-    /*DEFAULT_OPTIONS: {
+    DEFAULT_OPTIONS: {
         volume: 1.0,
         scalingMode: 1
     },
@@ -29,10 +29,10 @@ module.exports = {
             }
         });
         return obj;
-    }*/
-
-    greet: function (name, successCallback, errorCallback) {
-        cordova.exec(successCallback, errorCallback, "Hello", "greet", [name]);
     }
+
+    /*greet: function (name, successCallback, errorCallback) {
+        cordova.exec(successCallback, errorCallback, "Hello", "greet", [name]);
+    }*/
 
 };
