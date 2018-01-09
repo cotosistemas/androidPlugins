@@ -11,6 +11,10 @@
     <license></license>
   
     <keywords>cordova,plugins</keywords>
+	
+    <engines>
+		<engine name="cordova" version=">=3.4.0"/>
+	</engines>
   
     <repo>https://github.com/cotosistemas/androidPlugins.git</repo>
     <issue>https://github.com/cotosistemas/androidPlugins/issues</issue>
