@@ -11,7 +11,9 @@
     <repo>https://github.com/cotosistemas/androidPlugins.git</repo>
     <issue>https://github.com/cotosistemas/androidPlugins/issues</issue>
 
-    <js-module src="/www/videoplayer.js" name="VideoPlayer">
+    <asset src="www/videoplayer.js" target="js/videoplayer.js"/>
+
+    <js-module src="www/videoplayer.js" name="VideoPlayer">
         <clobbers target="VideoPlayer" />
     </js-module>
   
@@ -22,15 +24,12 @@
     <dependency id="cordova-plugin-file" version="^6.0.0" />
 
     <platform name="android">
-
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="VideoPlayer">
                 <param name="android-package" value="com.cotosistemas.cordova.plugins.VideoPlayer"/>
             </feature>
         </config-file>
-
         <source-file src="src/android/VideoPlayer.java" target-dir="src/com/cotosistemas/cordova/plugins" />
-
     </platform>
 
 </plugin>
