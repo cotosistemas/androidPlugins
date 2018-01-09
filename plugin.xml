@@ -11,7 +11,7 @@
     <repo>https://github.com/cotosistemas/androidPlugins.git</repo>
     <issue>https://github.com/cotosistemas/androidPlugins/issues</issue>
 
-    <js-module src="../plugins/com.cotosistemas.cordova.plugins/www/videoplayer.js" name="VideoPlayer">
+    <js-module src="/www/videoplayer.js" name="VideoPlayer">
         <clobbers target="VideoPlayer" />
     </js-module>
   
