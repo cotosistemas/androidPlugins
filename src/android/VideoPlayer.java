@@ -31,6 +31,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.View;
 import android.view.MotionEvent;
+import android.os.Bundle;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
 
