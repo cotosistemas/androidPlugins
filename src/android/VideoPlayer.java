@@ -144,7 +144,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		rlVideo.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-                cordova.getActivity().finish();
+				mp.release();
+				dialog.dismiss();
                 return false;
             }
         });
