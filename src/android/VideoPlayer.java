@@ -239,8 +239,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        //dialog.setContentView(main);
-        //dialog.show();
+        dialog.setContentView(main);
+        dialog.show();
         dialog.getWindow().setAttributes(lp);
     }
 
