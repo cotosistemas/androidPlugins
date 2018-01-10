@@ -13,7 +13,8 @@
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
-        android:gravity="center"
+        android:gravity="center"		
+		android:background="@android:color/black"
         android:text="HEADER"/>
 	<VideoView
 		android:id="@+id/activity_test_viewvideo"
@@ -27,6 +28,7 @@
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
+		android:background="@android:color/black"
         android:gravity="center"
         android:text="FOOTER"/>
 </RelativeLayout>
