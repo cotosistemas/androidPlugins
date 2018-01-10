@@ -133,19 +133,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
 		
-		RelativeLayout rlVideo = (RelativeLayout) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
-		VideoView videoview = (VideoView) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
-		Uri uri= Uri.parse(path);
-        videoView.setVideoURI(uri);
-		
-		rlVideo.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                cordova.getActivity().finish();
-                return false;
-            }
-        });
         		
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
@@ -168,6 +156,25 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.dismiss();
         return false;
     }
+	
+	@Override
+    public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+	
+		RelativeLayout rlVideo = (RelativeLayout) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
+		
+		VideoView videoview = (VideoView) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		Uri uri= Uri.parse(path);
+        videoView.setVideoURI(uri);
+		
+		rlVideo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                cordova.getActivity().finish();
+                return false;
+            }
+        });
+	}
 
     @Override
     public void onPrepared(MediaPlayer mp) {
