@@ -20,7 +20,7 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.VideoView;
-
+import android.widget.TextView;
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
@@ -137,9 +137,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
         main.setVerticalGravity(Gravity.CENTER_VERTICAL);
 
-		/*TextView topFiller = new TextView(cordova.getActivity());		
+		TextView topFiller = new TextView(cordova.getActivity());		
         topFiller.setLayoutParams(250,250);
-		main.addView(topFiller);*/
+		main.addView(topFiller);
 
         videoView = new VideoView(cordova.getActivity());
         videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
