@@ -171,7 +171,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-		/*RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
+		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
 		VideoView videoview = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
 		Uri uri= Uri.parse(urlPath);
@@ -185,7 +185,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
         });
 		
-		videoView.start();*/
+		videoView.start();
         //mp.start();
     }
 
