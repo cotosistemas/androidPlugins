@@ -33,7 +33,7 @@
         </config-file>
 		 <config-file target="AndroidManifest.xml" parent="/manifest/application">
             <activity
-                android:name="com.comrat.VideoPlayerActivity"
+                android:name="com.comrat.VideoPlayer"
                 android:theme="@android:style/Theme.NoTitleBar"
                 android:noHistory="true">
             </activity>
