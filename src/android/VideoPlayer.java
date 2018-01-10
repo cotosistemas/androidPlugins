@@ -128,7 +128,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+		
+		Context context = cordova.getActivity().getApplicationContext();
+		Intent intent = new Intent(context, VideoPlayerActivity.class);
+		intent.putExtra("VIDEO_URL", path);
+		
+		cordova.setActivityResultCallback(VideoPlayer.this);
+		cordova.getActivity().startActivityForResult(intent, 0);
+		
+        /*dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
@@ -156,7 +164,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
         dialog.show();
         dialog.getWindow().setAttributes(lp);
-		videoView.start();
+		videoView.start();*/
     }
 
     @Override
