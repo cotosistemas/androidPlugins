@@ -30,10 +30,7 @@ import org.apache.cordova.PluginResult;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.View;
-import android.view.MotionEvent;
-import android.os.Bundle;
-import android.content.Context;
-import android.content.Intent;
+
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
 
@@ -130,28 +127,33 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-		
-		Context context = cordova.getActivity().getApplicationContext();
-		Intent intent = new Intent(context, VideoPlayerActivity.class);
-		intent.putExtra("VIDEO_URL", path);
-		
-		cordova.setActivityResultCallback(VideoPlayer.this);
-		cordova.getActivity().startActivityForResult(intent, 0);
-		
-        /*dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
 		
-		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
+		//RelativeLayout rlVideo = (RelativeLayout) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
-		VideoView videoview = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		LinealLayout mainView = new LinealLayout(cordova.getActivity());
+		
+		  // Main container layout        
+        main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));        
+		main.setOrientation(LinearLayout.VERTICAL);
+        main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
+        main.setVerticalGravity(Gravity.CENTER_VERTICAL);
+		
+		LinealLayout header = new LinealLayout(cordova.getActivity());
+		header.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));                
+        header.setVerticalGravity(Gravity.CENTER_VERTICAL);
+		main.addView(header);
+		
+		VideoView videoview = new VideoView(cordova.getActivity());
 		Uri uri= Uri.parse(path);
         videoView.setVideoURI(uri);
+		mainView.addView(videoView);
 		
-		rlVideo.setOnTouchListener(new View.OnTouchListener() {
+		main.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 cordova.getActivity().finish();
@@ -164,9 +166,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
+		//dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
+		dialog.setContentView(mainView);
         dialog.show();
         dialog.getWindow().setAttributes(lp);
-		videoView.start();*/
+		videoView.start();
     }
 
     @Override
