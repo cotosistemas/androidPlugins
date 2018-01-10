@@ -232,12 +232,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
-        });
+        });*/
 
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;*/
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
         //dialog.setContentView(main);
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
