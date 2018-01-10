@@ -35,16 +35,11 @@ import android.view.View;
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
 
     protected static final String LOG_TAG = "VideoPlayer";
-
     protected static final String ASSETS = "/android_asset/";
-
     private CallbackContext callbackContext = null;
-
     private Dialog dialog;
-
     private VideoView videoView;
-
-    private MediaPlayer player;
+    private MediaPlayer player;		
 
     /**
      * Executes the request and returns PluginResult.
@@ -136,7 +131,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
        
 		
-		VideoView videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
 		
 		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
@@ -144,7 +139,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		rlVideo.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-				mp.release();
+				videoView.stopPlayback();
 				dialog.dismiss();
                 return false;
             }
