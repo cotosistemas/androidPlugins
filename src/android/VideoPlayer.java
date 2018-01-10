@@ -131,20 +131,45 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
 		
-		Context context = cordova.getActivity().getApplicationContext();
+		/*Context context = cordova.getActivity().getApplicationContext();
 		Intent intent = new Intent(context, VideoPlayerActivity.class);
 		intent.putExtra("VIDEO_URL", path);
 		
 		cordova.setActivityResultCallback(VideoPlayer.this);
-		cordova.getActivity().startActivityForResult(intent, 0);
+		cordova.getActivity().startActivityForResult(intent, 0);*/
 		
-        /*dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
         dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
 		
+		
+        		
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(dialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        dialog.show();
+        dialog.getWindow().setAttributes(lp);
+	
+    }
+
+    @Override
+    public boolean onError(MediaPlayer mp, int what, int extra) {
+        /*Log.e(LOG_TAG, "MediaPlayer.onError(" + what + ", " + extra + ")");
+        if(mp.isPlaying()) {
+            mp.stop();
+        }
+        mp.release();*/
+        dialog.dismiss();
+        return false;
+    }
+
+    @Override
+    public void onPrepared(MediaPlayer mp) {
 		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
 		VideoView videoview = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
@@ -158,37 +183,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
                 return false;
             }
         });
-        		
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
-        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
-
-        dialog.show();
-        dialog.getWindow().setAttributes(lp);
-		videoView.start();*/
-    }
-
-    @Override
-    public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.e(LOG_TAG, "MediaPlayer.onError(" + what + ", " + extra + ")");
-        if(mp.isPlaying()) {
-            mp.stop();
-        }
-        mp.release();
-        dialog.dismiss();
-        return false;
-    }
-
-    @Override
-    public void onPrepared(MediaPlayer mp) {
-        mp.start();
+		
+		videoView.start();
+        //mp.start();
     }
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.d(LOG_TAG, "MediaPlayer completed");
-        mp.release();
+        //Log.d(LOG_TAG, "MediaPlayer completed");
+        //mp.release();
         dialog.dismiss();
     }
 
