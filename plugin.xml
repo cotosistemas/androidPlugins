@@ -31,6 +31,13 @@
                 <param name="android-package" value="com.cotosistemas.cordova.plugins.VideoPlayer"/>
             </feature>
         </config-file>
+		 <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <activity
+                android:name="com.comrat.VideoPlayerActivity"
+                android:theme="@android:style/Theme.NoTitleBar"
+                android:noHistory="true">
+            </activity>
+        </config-file>
         <source-file src="src/android/VideoPlayer.java" target-dir="src/com/cotosistemas/cordova/plugins" />
 		<source-file src="src/android/VideoPlayerActivity.java" target-dir="src/com/cotosistemas/cordova/plugins" />
 		<source-file src="src/android/content_activity_test.xml" target-dir="res/layout"/>
