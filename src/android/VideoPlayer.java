@@ -135,7 +135,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		
 		//RelativeLayout rlVideo = (RelativeLayout) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
-		LinealLayout mainView = new LinealLayout(cordova.getActivity());
+		LinearLayout mainView = new LinearLayout(cordova.getActivity());
 		
 		  // Main container layout        
         main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));        
@@ -143,7 +143,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
         main.setVerticalGravity(Gravity.CENTER_VERTICAL);
 		
-		LinealLayout header = new LinealLayout(cordova.getActivity());
+		LinearLayout header = new LinearLayout(cordova.getActivity());
 		header.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, 50));                
         header.setVerticalGravity(Gravity.CENTER_VERTICAL);
 		main.addView(header);
