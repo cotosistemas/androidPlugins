@@ -130,114 +130,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
-
-        // Main container layout
-        /*LinearLayout main = new LinearLayout(cordova.getActivity());
-        main.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        main.setOrientation(LinearLayout.VERTICAL);
-        main.setHorizontalGravity(Gravity.CENTER_HORIZONTAL);
-        main.setVerticalGravity(Gravity.CENTER_VERTICAL);
-
-		TextView topFiller = new TextView(cordova.getActivity());		
-        //topFiller.setLayoutParams(250,250);
-		main.addView(topFiller);
-
-        videoView = new VideoView(cordova.getActivity());
-        videoView.setLayoutParams(new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        // videoView.setVideoURI(uri);
-        // videoView.setVideoPath(path);
-        main.addView(videoView);
-
-        player = new MediaPlayer();
-        player.setOnPreparedListener(this);
-        player.setOnCompletionListener(this);
-        player.setOnErrorListener(this);
-
-        if (path.startsWith(ASSETS)) {
-            String f = path.substring(15);
-            AssetFileDescriptor fd = null;
-            try {
-                fd = cordova.getActivity().getAssets().openFd(f);
-                player.setDataSource(fd.getFileDescriptor(), fd.getStartOffset(), fd.getLength());
-            } catch (Exception e) {
-                PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-                result.setKeepCallback(false); // release status callback in JS side
-                callbackContext.sendPluginResult(result);
-                callbackContext = null;
-                return;
-            }
-        }
-        else {
-            try {
-                player.setDataSource(path);
-            } catch (Exception e) {
-                PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-                result.setKeepCallback(false); // release status callback in JS side
-                callbackContext.sendPluginResult(result);
-                callbackContext = null;
-                return;
-            }
-        }
-
-        try {
-            float volume = Float.valueOf(options.getString("volume"));
-            Log.d(LOG_TAG, "setVolume: " + volume);
-            player.setVolume(volume, volume);
-        } catch (Exception e) {
-            PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-            result.setKeepCallback(false); // release status callback in JS side
-            callbackContext.sendPluginResult(result);
-            callbackContext = null;
-            return;
-        }
-
-        if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.JELLY_BEAN) {
-            try {
-                int scalingMode = options.getInt("scalingMode");				 
-                 switch (scalingMode) {
-                    case MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING:
-                        Log.d(LOG_TAG, "setVideoScalingMode VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING");
-                        player.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING);
-                        break;
-                    default:
-                        Log.d(LOG_TAG, "setVideoScalingMode VIDEO_SCALING_MODE_SCALE_TO_FIT");
-                        player.setVideoScalingMode(MediaPlayer.VIDEO_SCALING_MODE_SCALE_TO_FIT);
-                }
-            } catch (Exception e) {
-                PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-                result.setKeepCallback(false); // release status callback in JS side
-                callbackContext.sendPluginResult(result);
-                callbackContext = null;
-                return;
-            }
-        }
-
-        final SurfaceHolder mHolder = videoView.getHolder();
-        mHolder.setKeepScreenOn(true);
-        mHolder.addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                player.setDisplay(holder);
-                try {
-                    player.prepare();
-                } catch (Exception e) {
-                    PluginResult result = new PluginResult(PluginResult.Status.ERROR, e.getLocalizedMessage());
-                    result.setKeepCallback(false); // release status callback in JS side
-                    callbackContext.sendPluginResult(result);
-                    callbackContext = null;
-                }
-            }
-            @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                player.release();
-            }
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
-        });*/
 		
-		RelativeLayout rlVideo = (RelativeLayout)findViewById(this.getResources().getIdentifier("layout_video", "id", this.getPackageName()));
+		RelativeLayout rlVideo = (RelativeLayout)findViewById(this.getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
-		VideoView videoview = (VideoView)findViewById(this.getResources().getIdentifier("activity_test_viewvideo", "id", this.getPackageName()));
+		VideoView videoview = (VideoView)findViewById(this.getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
 		Uri uri= Uri.parse(path);
         videoView.setVideoURI(uri);
 		
@@ -254,7 +150,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-        //dialog.setContentView(main);
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
         dialog.show();
         dialog.getWindow().setAttributes(lp);
