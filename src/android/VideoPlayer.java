@@ -233,7 +233,21 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             @Override
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
         });*/
-
+		
+		RelativeLayout rlVideo = (RelativeLayout)findViewById(this.getResources().getIdentifier("layout_video", "id", this.getPackageName()));
+		
+		VideoView videoview = (VideoView)findViewById(this.getResources().getIdentifier("activity_test_viewvideo", "id", this.getPackageName()));
+		Uri uri= Uri.parse(path);
+        videoView.setVideoURI(uri);
+		
+		rlVideo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                cordova.getActivity().finish();
+                return false;
+            }
+        });
+        		
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -243,6 +257,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
         dialog.show();
         dialog.getWindow().setAttributes(lp);
+		videoView.start();
     }
 
     @Override
