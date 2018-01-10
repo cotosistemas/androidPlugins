@@ -11,6 +11,8 @@ import android.app.ProgressDialog;
 import android.util.Log;
 import android.widget.MediaController;
 import android.widget.VideoView;
+import android.content.Context;
+import android.content.Intent;
 
 import org.apache.cordova.*;
 
@@ -33,9 +35,7 @@ public class VideoPlayerActivity extends CordovaActivity {
             }
         } else {
             url = (String)savedInstanceState.getSerializable("VIDEO_URL");
-        }
-
-        Log.d(LOG_TAG, "PlayUrl: " + url);
+        }        
 
         setContentView(this.getResources().getIdentifier("content_activity_test", "layout", this.getPackageName()));
         videoview = (VideoView)findViewById(this.getResources().getIdentifier("activity_test_viewvideo", "id", this.getPackageName()));
@@ -52,8 +52,7 @@ public class VideoPlayerActivity extends CordovaActivity {
             Uri video = Uri.parse(url);
             //videoview.setMediaController(mediacontroller);
             videoview.setVideoURI(video);
-        } catch (Exception e) {
-            Log.e("Error", e.getMessage());
+        } catch (Exception e) {            
             e.printStackTrace();
         }
 
