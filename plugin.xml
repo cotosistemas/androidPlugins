@@ -20,8 +20,6 @@
     <js-module src="www/videoplayer.js" name="VideoPlayer">
         <clobbers target="VideoPlayer" />
     </js-module>
-	
-
   
     <engines>
       <engine name="cordova-android" version=">=6.3.0" />
@@ -32,9 +30,6 @@
             <feature name="VideoPlayer">
                 <param name="android-package" value="com.cotosistemas.cordova.plugins.VideoPlayer"/>
             </feature>
-        </config-file>
-		 <config-file target="AndroidManifest.xml" parent="/manifest/application">
-            <activity android:label="Video Player" android:name="com.cotosistemas.cordova.plugins.VideoPlayer"></activity>
         </config-file>
         <source-file src="src/android/VideoPlayer.java" target-dir="src/com/cotosistemas/cordova/plugins" />
     </platform>
