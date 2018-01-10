@@ -48,6 +48,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private VideoView videoView;
 
     private MediaPlayer player;
+	private String urlPath;
 
     /**
      * Executes the request and returns PluginResult.
@@ -145,7 +146,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setOnDismissListener(this);
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
 		
-		
+		urlPath = path;
         		
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
@@ -173,7 +174,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
 		VideoView videoview = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
-		Uri uri= Uri.parse(path);
+		Uri uri= Uri.parse(urlPath);
         videoView.setVideoURI(uri);
 		
 		rlVideo.setOnTouchListener(new View.OnTouchListener() {
