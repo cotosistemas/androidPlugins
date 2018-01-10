@@ -235,7 +235,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {}
         });*/
 		
-		VideoView videoView = (VideoView)findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		VideoView videoView = (VideoView)cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		
 		Uri uri= Uri.parse(path);
         videoView.setVideoURI(uri);
         videoView.start();
