@@ -133,15 +133,27 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
+		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
 		
+		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
 		
+		VideoView videoview = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		Uri uri= Uri.parse(path);
+        videoView.setVideoURI(uri);
+		
+		rlVideo.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                cordova.getActivity().finish();
+                return false;
+            }
+        });
         		
         WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
         lp.copyFrom(dialog.getWindow().getAttributes());
         lp.width = WindowManager.LayoutParams.WRAP_CONTENT;
         lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
 
-		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
         dialog.show();
         dialog.getWindow().setAttributes(lp);
 		videoView.start();
@@ -157,25 +169,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.dismiss();
         return false;
     }
-	
-	@Override
-    public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-	
-		RelativeLayout rlVideo = (RelativeLayout) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
-		
-		VideoView videoview = (VideoView) cordova.getActivity().findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
-		Uri uri= Uri.parse(path);
-        videoView.setVideoURI(uri);
-		
-		rlVideo.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-                cordova.getActivity().finish();
-                return false;
-            }
-        });
-	}
 
     @Override
     public void onPrepared(MediaPlayer mp) {
