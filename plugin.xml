@@ -21,9 +21,9 @@
         <clobbers target="VideoPlayer" />
     </js-module>
   
-	  <engines>
-		<engine name="cordova" version=">=3.4.0"/>
-	  </engines>
+    <engines>
+      <engine name="cordova" version=">=6.3.0" />
+    </engines>
 
     <platform name="android">
         <config-file target="res/xml/config.xml" parent="/*">
