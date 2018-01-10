@@ -38,6 +38,7 @@
                 android:noHistory="true">
             </activity>
         </config-file>
+		<config-file parent="/*" target="AndroidManifest.xml"></config-file>
         <source-file src="src/android/VideoPlayer.java" target-dir="src/com/cotosistemas/cordova/plugins" />
 		<source-file src="src/android/VideoPlayerActivity.java" target-dir="src/com/cotosistemas/cordova/plugins" />
 		<source-file src="src/android/content_activity_test.xml" target-dir="res/layout"/>
