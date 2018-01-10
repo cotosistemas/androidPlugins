@@ -153,7 +153,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         videoView.setVideoURI(uri);
 		mainView.addView(videoView);
 		
-		main.setOnTouchListener(new View.OnTouchListener() {
+		mainView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 cordova.getActivity().finish();
