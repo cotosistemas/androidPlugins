@@ -14,14 +14,18 @@
         android:layout_centerHorizontal="true"
         android:gravity="center"
         android:text="HEADER"/>
-    <VideoView
-        android:id="@+id/activity_test_viewvideo"
+	<FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@+id/textview_header"
-        android:layout_above="@+id/textview_footer"
-        android:layout_centerVertical="true">
-    </VideoView>
+		android:layout_above="@+id/textview_footer">
+		<VideoView
+			android:id="@+id/activity_test_viewvideo"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"			
+			android:layout_centerVertical="true">
+		</VideoView>
+	</FrameLayout>
     <TextView
         android:id="@+id/textview_footer"
         android:layout_width="wrap_content"
