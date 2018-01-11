@@ -72,12 +72,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			String[] listaVideos = fileUriStr.split(",");
 			String videoUrl="";
 			if(listaVideos.length != 0){
-				videoUrl = listaVideos[indiceVideo++];
-				videoUrl.replaceAll("\\","");				
+				videoUrl = listaVideos[indiceVideo++];			
 			}else
 				videoUrl = fileUriStr;
+			
+			
             final String path = stripFileProtocol(videoUrl);
-
+			System.out.println(videoUrl);		
+			System.out.println(path);
+			
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
