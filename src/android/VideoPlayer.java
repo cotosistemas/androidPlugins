@@ -78,8 +78,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			
             final String path = stripFileProtocol(videoUrl);
-			System.out.println(videoUrl);		
-			System.out.println(path);
+			//System.out.println(videoUrl);		
+			//System.out.println(path);
 			
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
