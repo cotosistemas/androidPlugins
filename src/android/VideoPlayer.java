@@ -144,6 +144,18 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
         });
 		
+		videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                PluginResult result = new PluginResult(PluginResult.Status.OK);
+				result.setKeepCallback(false); // release status callback in JS side
+				callbackContext.sendPluginResult(result);
+				callbackContext = null;
+				videoView.stopPlayback();
+				dialog.dismiss();
+            }
+        });
+		
 		Uri uri= Uri.parse(path);
         videoView.setVideoURI(uri);
         videoView.start();
