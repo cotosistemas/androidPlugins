@@ -128,12 +128,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         dialog.setCancelable(true);
         dialog.setOnDismissListener(this);
 
-		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("content_activity_test", "layout", cordova.getActivity().getPackageName()));
-       
+		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("videoplayer_layout", "layout", cordova.getActivity().getPackageName()));      
 		
-		videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("activity_test_viewvideo", "id", cordova.getActivity().getPackageName()));
+		videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
 		
-		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video", "id", cordova.getActivity().getPackageName()));
+		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 		
 		
 		rlVideo.setOnTouchListener(new View.OnTouchListener() {
