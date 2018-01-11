@@ -39,8 +39,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private CallbackContext callbackContext = null;
     private Dialog dialog;
     private VideoView videoView;
-    private MediaPlayer player;		
-
+    private MediaPlayer player;	
+	private String[] listaVideos;
+	private Integer indiceVideo;
     /**
      * Executes the request and returns PluginResult.
      *
@@ -66,18 +67,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
 
             Log.v(LOG_TAG, fileUriStr);
-			Integer indiceVideo = 0;
+			indiceVideo = 0;
 			
 			String urls="";
-			String[] listaVideos = fileUriStr.split(",");
+			listaVideos = fileUriStr.split(",");
 			String videoUrl="";
 			if(listaVideos.length > 1){
-				videoUrl = listaVideos[indiceVideo];			
-				indiceVideo++;
-				//videoUrl = videoUrl.replaceAll("\\","");
+				videoUrl = listaVideos[indiceVideo++];											
 			}else
-				videoUrl = listaVideos[0];
-			
+				videoUrl = listaVideos[0];			
 			
             final String path = stripFileProtocol(videoUrl);			
 			
@@ -159,8 +157,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {              
-				videoView.stopPlayback();
-				dialog.dismiss();
+				if(indiceVideo == listaVideos.length){
+					videoView.stopPlayback();
+					dialog.dismiss();
+				}else{
+					Uri uri= Uri.parse(listaVideos[indiceVideo++]);
+					videoView.setVideoURI(uri);
+					videoView.start();
+				}
             }
         });			
 		Log.v(LOG_TAG, path);
