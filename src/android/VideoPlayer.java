@@ -163,7 +163,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				dialog.dismiss();
             }
         });
-		
+		Log.v(LOG_TAG, path);
 		Uri uri= Uri.parse(path.replaceAll("\\",""));
         videoView.setVideoURI(uri);
         videoView.start();
