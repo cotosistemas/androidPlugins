@@ -12,10 +12,7 @@
         android:id="@+id/layout_video_imageview_header"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"		
-		android:background="@android:color/black"
-        android:text="HEADER"/>
+		android:background="@android:color/black" />
 	<VideoView
 		android:id="@+id/layout_video_viewvideo"
 		android:layout_width="match_parent"
@@ -25,10 +22,7 @@
     <ImageView
         android:id="@+id/layout_video_imageview_footer"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
+        android:layout_height="100dp"        
         android:layout_alignParentBottom="true"
-		android:background="@android:color/black"
-        android:gravity="center"
-        android:text="FOOTER"/>
+		android:background="@android:color/black" />
 </RelativeLayout>
