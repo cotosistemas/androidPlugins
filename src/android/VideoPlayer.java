@@ -80,12 +80,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             PluginResult pluginResult = new PluginResult(PluginResult.Status.NO_RESULT);
             pluginResult.setKeepCallback(true);
             callbackContext.sendPluginResult(pluginResult);
-            callbackContext = null;
-
-			/*PluginResult result = new PluginResult(PluginResult.Status.OK);
-			result.setKeepCallback(false); // release status callback in JS side
-			callbackContext.sendPluginResult(result);
-			callbackContext = null;*/
+            callbackContext = null;			
 			
             return true;
         }
