@@ -74,7 +74,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(listaVideos.length > 1){
 				videoUrl = listaVideos[indiceVideo];			
 				indiceVideo++;
-				videoUrl = videoUrl.replaceAll("\\","");
+				//videoUrl = videoUrl.replaceAll("\\","");
 			}else
 				videoUrl = listaVideos[0];
 			
@@ -164,7 +164,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
         });
 		
-		Uri uri= Uri.parse(path);
+		Uri uri= Uri.parse(path.replaceAll("\\",""));
         videoView.setVideoURI(uri);
         videoView.start();
 		
