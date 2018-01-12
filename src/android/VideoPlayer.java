@@ -74,8 +74,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			String videoUrl="";
 			if(listaVideos.length > 1){
 				videoUrl = listaVideos[indiceVideo++];											
-			}else
-				videoUrl = listaVideos[0];			
+			}else{
+				videoUrl = listaVideos[indiceVideo++];			
+			}
 			
             final String path = stripFileProtocol(videoUrl);			
 			
