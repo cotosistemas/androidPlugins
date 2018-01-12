@@ -118,22 +118,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
             return true;
         }else if (action.equals("rotate")) {
-			
-            if (dialog != null) {				
-				Log.v(LOG_TAG, dialog.toString());
-				imageViewHeader = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_header", "id", cordova.getActivity().getPackageName()));
-				imageViewFooter = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_footer", "id", cordova.getActivity().getPackageName()));
-				Log.v(LOG_TAG, imageViewHeader.toString());
-				String rotation = args.getString(0);
-				if(rotation.equals("landscape")){
-					imageViewHeader.setVisibility(View.GONE);
-					imageViewFooter.setVisibility(View.GONE);
-					Log.v(LOG_TAG, rotation);
-				}else{
-					imageViewHeader.setVisibility(View.VISIBLE);
-					imageViewFooter.setVisibility(View.VISIBLE);
-				}				
-            }
+			String rotation = args.getString(0);
+            cordova.getActivity().runOnUiThread(new Runnable() {
+                public void run() {
+                    rotateView(rotation);
+                }
+            });
 
             if (callbackContext != null) {
                 PluginResult result = new PluginResult(PluginResult.Status.OK);
@@ -160,7 +150,22 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         }
         return uriString;
     }
-
+	
+	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
+    protected void rotateView(String rotation) {
+		 if (dialog != null) {	
+			imageViewHeader = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_header", "id", cordova.getActivity().getPackageName()));
+			imageViewFooter = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_footer", "id", cordova.getActivity().getPackageName()));			
+			
+			if(rotation.equals("landscape")){
+				imageViewHeader.setVisibility(View.GONE);
+				imageViewFooter.setVisibility(View.GONE);			
+			}else{
+				imageViewHeader.setVisibility(View.VISIBLE);
+				imageViewFooter.setVisibility(View.VISIBLE);
+			}		
+		}		
+	}
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
