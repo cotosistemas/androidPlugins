@@ -42,6 +42,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private MediaPlayer player;	
 	private String[] listaVideos;
 	private Integer indiceVideo;
+	private Boolean hasToLoop;
     /**
      * Executes the request and returns PluginResult.
      *
@@ -56,7 +57,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
             CordovaResourceApi resourceApi = webView.getResourceApi();
             String target = args.getString(0);
-            final JSONObject options = args.getJSONObject(1);
+			hasToLoop = Boolean.valueOf(args.getString(1));
+            final JSONObject options = args.getJSONObject(2);
 
             String fileUriStr;
             try {
@@ -159,8 +161,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             @Override
             public void onCompletion(MediaPlayer mediaPlayer) {              
 				if(indiceVideo == listaVideos.length){
-					videoView.stopPlayback();
-					dialog.dismiss();
+					if(!hasToLoop){
+						videoView.stopPlayback();
+						dialog.dismiss();
+					}else{
+						indiceVideo = 0;
+						Uri uri= Uri.parse(listaVideos[indiceVideo++]);
+						videoView.setVideoURI(uri);
+						videoView.start();
+					}
 				}else{
 					Uri uri= Uri.parse(listaVideos[indiceVideo++]);
 					videoView.setVideoURI(uri);
