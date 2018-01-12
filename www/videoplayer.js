@@ -20,6 +20,10 @@ module.exports = {
     close: function (successCallback, errorCallback) {
         exec(successCallback, errorCallback, "VideoPlayer", "close", []);
     },
+	
+	rotate: function (rotation, successCallback, errorCallback) {
+        exec(successCallback, errorCallback, "VideoPlayer", "rotate", [rotation]);
+    },
 
     merge: function () {
         var obj = {};

@@ -39,10 +39,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private CallbackContext callbackContext = null;
     private Dialog dialog;
     private VideoView videoView;
+	private ImageView imageViewHeader, imageViewFooter;
     private MediaPlayer player;	
 	private String[] listaVideos;
 	private Integer indiceVideo;
 	private Boolean hasToLoop;
+	
     /**
      * Executes the request and returns PluginResult.
      *
@@ -114,6 +116,28 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             }
 
             return true;
+        }else if (action.equals("rotate")) {
+            if (dialog != null) {
+				imageViewHeader = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_header", "id", cordova.getActivity().getPackageName()));
+				imageViewFooter = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_footer", "id", cordova.getActivity().getPackageName()));
+				String rotation = args.getString(0);
+				if(rotation == "landscape"){
+					imageViewHeader.setVisibility(View.GONE);
+					imageViewFooter.setVisibility(View.GONE);
+				}else{
+					imageViewHeader.setVisibility(View.VISIBLE);
+					imageViewFooter.setVisibility(View.VISIBLE);
+				}				
+            }
+
+            if (callbackContext != null) {
+                PluginResult result = new PluginResult(PluginResult.Status.OK);
+                result.setKeepCallback(false); // release status callback in JS side
+                callbackContext.sendPluginResult(result);
+                callbackContext = null;
+            }
+
+            return true;
         }
         return false;
     }
@@ -144,6 +168,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("videoplayer_layout", "layout", cordova.getActivity().getPackageName()));      
 		
 		videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
+		
+		
 		
 		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 		
