@@ -169,64 +169,66 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
-        dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
-        dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setCancelable(true);
-        dialog.setOnDismissListener(this);
+		if(dialog == null){
+			dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
+			dialog.getWindow().getAttributes().windowAnimations = android.R.style.Animation_Dialog;
+			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+			dialog.setCancelable(true);
+			dialog.setOnDismissListener(this);
 
-		dialog.setContentView(cordova.getActivity().getResources().getIdentifier("videoplayer_layout", "layout", cordova.getActivity().getPackageName()));      
-		
-		videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
-		
-		
-		
-		RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
-		
-		
-		rlVideo.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
-				videoView.stopPlayback();
-				dialog.dismiss();
-                return false;
-            }
-        });
-		
-		videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-            @Override
-            public void onCompletion(MediaPlayer mediaPlayer) {              
-				if(indiceVideo == listaVideos.length){
-					if(!hasToLoop){
-						videoView.stopPlayback();
-						dialog.dismiss();
+			dialog.setContentView(cordova.getActivity().getResources().getIdentifier("videoplayer_layout", "layout", cordova.getActivity().getPackageName()));      
+			
+			videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
+			
+			
+			
+			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
+			
+			
+			rlVideo.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View view, MotionEvent motionEvent) {
+					videoView.stopPlayback();
+					dialog.dismiss();
+					return false;
+				}
+			});
+			
+			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				@Override
+				public void onCompletion(MediaPlayer mediaPlayer) {              
+					if(indiceVideo == listaVideos.length){
+						if(!hasToLoop){
+							videoView.stopPlayback();
+							dialog.dismiss();
+						}else{
+							indiceVideo = 0;
+							Uri uri= Uri.parse(listaVideos[indiceVideo++]);
+							videoView.setVideoURI(uri);
+							videoView.start();
+						}
 					}else{
-						indiceVideo = 0;
 						Uri uri= Uri.parse(listaVideos[indiceVideo++]);
 						videoView.setVideoURI(uri);
 						videoView.start();
 					}
-				}else{
-					Uri uri= Uri.parse(listaVideos[indiceVideo++]);
-					videoView.setVideoURI(uri);
-					videoView.start();
 				}
-            }
-        });			
-		Log.v(LOG_TAG, path);
-		Uri uri= Uri.parse(path);
-        videoView.setVideoURI(uri);
-        videoView.start();
-		
-        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
-        lp.copyFrom(dialog.getWindow().getAttributes());
-        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
-        lp.height = WindowManager.LayoutParams.MATCH_PARENT;
+			});			
+			Log.v(LOG_TAG, path);
+			Uri uri= Uri.parse(path);
+			videoView.setVideoURI(uri);
+			videoView.start();
+			
+			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+			lp.copyFrom(dialog.getWindow().getAttributes());
+			lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+			lp.height = WindowManager.LayoutParams.MATCH_PARENT;
 
-        //dialog.setContentView(main);
-		
-        dialog.show();
-        dialog.getWindow().setAttributes(lp);
+			//dialog.setContentView(main);
+			
+			dialog.show();
+			dialog.getWindow().setAttributes(lp);
+		}
     }
 
     @Override
