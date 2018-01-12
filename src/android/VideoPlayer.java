@@ -118,7 +118,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
             return true;
         }else if (action.equals("rotate")) {
-			String rotation = args.getString(0);
+			final String rotation = args.getString(0);
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
                     rotateView(rotation);
