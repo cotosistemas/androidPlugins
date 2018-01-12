@@ -122,7 +122,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				imageViewHeader = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_header", "id", cordova.getActivity().getPackageName()));
 				imageViewFooter = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_footer", "id", cordova.getActivity().getPackageName()));
 				String rotation = args.getString(0);
-				if(rotation == "landscape"){
+				if(rotation.equals("landscape")){
 					imageViewHeader.setVisibility(View.GONE);
 					imageViewFooter.setVisibility(View.GONE);
 				}else{
