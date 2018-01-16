@@ -166,6 +166,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}		
 		}		
 	}
+	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void openVideoDialog(String path, JSONObject options) {
         // Let's create the main dialog
@@ -175,15 +176,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
 			dialog.setCancelable(true);
 			dialog.setOnDismissListener(this);
-
 			dialog.setContentView(cordova.getActivity().getResources().getIdentifier("videoplayer_layout", "layout", cordova.getActivity().getPackageName()));      
 			
 			videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
 			
-			
-			
 			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
-			
 			
 			rlVideo.setOnTouchListener(new View.OnTouchListener() {
 				@Override
@@ -223,9 +220,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			lp.copyFrom(dialog.getWindow().getAttributes());
 			lp.width = WindowManager.LayoutParams.MATCH_PARENT;
 			lp.height = WindowManager.LayoutParams.MATCH_PARENT;
-
-			//dialog.setContentView(main);
-			
 			dialog.show();
 			dialog.getWindow().setAttributes(lp);
 		}
