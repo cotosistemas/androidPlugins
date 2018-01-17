@@ -191,9 +191,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
-				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				/*webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
-				webViewHeader.getSettings().setUseWideViewPort(true);
+				webViewHeader.getSettings().setUseWideViewPort(true);*/
+				    webViewHeader.getSettings().setLoadWithOverviewMode(true);
+					webViewHeader.getSettings().setUseWideViewPort(true);
+					//webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+					webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+						"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
+						"<img src=\""+imageHeaderPath"\">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+						"</body>", "text/html", "utf-8", "");
 			}else{
 				webViewHeader.setVisibility(View.GONE);
 			}
@@ -201,9 +208,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			WebView webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
-				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				/*webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				webViewFooter.getSettings().setLoadWithOverviewMode(true);
+				webViewFooter.getSettings().setUseWideViewPort(true);*/
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
+				//webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
+					"<img src=\""+imageFooterPath"\">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+					"</body>", "text/html", "utf-8", "");
 			}else{
 				webViewFooter.setVisibility(View.GONE);
 			}
