@@ -162,11 +162,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));			
 			
 			if(rotation.equals("landscape")){
-				imageViewHeader.setVisibility(View.GONE);
-				imageViewFooter.setVisibility(View.GONE);			
+				webViewHeader.setVisibility(View.GONE);
+				webViewFooter.setVisibility(View.GONE);			
 			}else{
-				imageViewHeader.setVisibility(View.VISIBLE);
-				imageViewFooter.setVisibility(View.VISIBLE);
+				webViewHeader.setVisibility(View.VISIBLE);
+				webViewFooter.setVisibility(View.VISIBLE);
 			}		
 		}		
 	}
