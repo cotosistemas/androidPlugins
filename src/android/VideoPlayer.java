@@ -189,16 +189,20 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
+				Log.v(LOG_TAG, "image header existe");
 				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 			}else{
+				Log.v(LOG_TAG, "image header no existe");
 				webViewHeader.setVisibility(View.GONE);
 			}
 			
 			WebView webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
+				Log.v(LOG_TAG, "footer header existe");
 				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 			}else{
+				Log.v(LOG_TAG, "footer header no existe");
 				webViewFooter.setVisibility(View.GONE);
 			}
 			
