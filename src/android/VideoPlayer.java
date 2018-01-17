@@ -194,13 +194,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				/*webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);*/
-				    webViewHeader.getSettings().setLoadWithOverviewMode(true);
-					webViewHeader.getSettings().setUseWideViewPort(true);
-					//webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+			
 					webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 						"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 						"<img src="+imageHeaderPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
 						"</body>", "text/html", "utf-8", "");
+					webViewHeader.getSettings().setLoadWithOverviewMode(true);
+					webViewHeader.getSettings().setUseWideViewPort(true);
+					webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 			}else{
 				webViewHeader.setVisibility(View.GONE);
 			}
@@ -211,13 +212,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				/*webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);*/
-				webViewFooter.getSettings().setLoadWithOverviewMode(true);
-				webViewFooter.getSettings().setUseWideViewPort(true);
-				//webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageFooterPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
 					"</body>", "text/html", "utf-8", "");
+				webViewFooter.getSettings().setLoadWithOverviewMode(true);
+				webViewFooter.getSettings().setUseWideViewPort(true);
+				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 			}else{
 				webViewFooter.setVisibility(View.GONE);
 			}
