@@ -11,8 +11,7 @@
     <WebView
         android:id="@+id/videoplayer_imageview_header"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-		android:background="@android:color/black" />
+        android:layout_height="100dp" />
 	<VideoView
 		android:id="@+id/layout_video_viewvideo"
 		android:layout_width="match_parent"
@@ -25,6 +24,5 @@
         android:id="@+id/videoplayer_imageview_footer"
         android:layout_width="match_parent"
         android:layout_height="100dp"        
-        android:layout_alignParentBottom="true"
-		android:background="@android:color/black" />
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
