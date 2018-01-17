@@ -193,7 +193,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
 				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 				webViewHeader.setPadding(0, 0, 0, 0);
-				webViewHeader.setInitialScale(getScale());
+				webViewHeader.setInitialScale(1);
 			}else{
 				webViewHeader.setVisibility(View.GONE);
 			}
@@ -203,7 +203,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
 				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 				webViewFooter.setPadding(0, 0, 0, 0);
-				webViewFooter.setInitialScale(getScale());
+				webViewFooter.setInitialScale(1);
 			}else{
 				webViewFooter.setVisibility(View.GONE);
 			}
@@ -256,14 +256,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	private int getScale(){
-		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); 
-		int width = display.getWidth(); 
-		Double val = new Double(width)/new Double(PIC_WIDTH);
-		val = val * 100d;
-		return val.intValue();
-}
-
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
         Log.e(LOG_TAG, "MediaPlayer.onError(" + what + ", " + extra + ")");
