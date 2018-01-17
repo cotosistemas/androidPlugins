@@ -35,12 +35,7 @@ import android.webkit.WebSettings;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.MotionEvent;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import org.json.*;
 import android.view.View;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
@@ -73,11 +68,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             String target = args.getString(0);
 			Log.v(LOG_TAG, target);
 			
-			GsonBuilder builder = new GsonBuilder();
-            builder.excludeFieldsWithoutExposeAnnotation();
-            Gson gson = builder.create();              
-            JsonParser parser = new JsonParser();
-            JsonElement element = parser.parse(target.toString());
+			JSONObject obj = new JSONObject(" .... ");
+			String pageName = obj.getJSONObject("pageInfo").getString("pageName");
+
+			JSONArray arr = obj.getJSONArray("posts");
+			for (int i = 0; i < arr.length(); i++)
+			{
+				String post_id = arr.getJSONObject(i).getString("post_id");
+				......
+			}
 			
 			hasToLoop = Boolean.valueOf(args.getString(1));
             final JSONObject options = args.getJSONObject(2);
