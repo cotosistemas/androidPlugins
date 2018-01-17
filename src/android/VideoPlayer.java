@@ -67,6 +67,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             String target = args.getString(0);
 			Log.v(LOG_TAG, target);
 			
+			GsonBuilder builder = new GsonBuilder();
+            builder.excludeFieldsWithoutExposeAnnotation();
+            Gson gson = builder.create();              
+            JsonParser parser = new JsonParser();
+            JsonElement element = parser.parse(target.toString());
+			
 			hasToLoop = Boolean.valueOf(args.getString(1));
             final JSONObject options = args.getJSONObject(2);
 			
@@ -327,3 +333,4 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
         }
     }
 }
+
