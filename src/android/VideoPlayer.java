@@ -31,6 +31,7 @@ import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaResourceApi;
 import org.apache.cordova.PluginResult;
 import android.webkit.WebView;
+import android.webkit.WebSettings;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.MotionEvent;
