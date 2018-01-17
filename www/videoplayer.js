@@ -14,7 +14,7 @@ module.exports = {
 
     play: function (path, hasToLoop, options, successCallback, errorCallback) {
         options = this.merge(this.DEFAULT_OPTIONS, options);
-        exec(successCallback, errorCallback, "VideoPlayer", "play", [path, hasToLoop, options]);
+        exec(successCallback, errorCallback, "VideoPlayer", "play", [path, hasToLoop, imageHeader, imageFooter, options]);
     },
 
     close: function (successCallback, errorCallback) {

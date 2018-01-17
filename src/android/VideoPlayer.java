@@ -28,6 +28,7 @@ import org.apache.cordova.CordovaArgs;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CordovaResourceApi;
 import org.apache.cordova.PluginResult;
+import android.webkit.WebView;
 import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.MotionEvent;
@@ -45,6 +46,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	private String[] listaVideos;
 	private Integer indiceVideo;
 	private Boolean hasToLoop;
+	private String imageHeaderPath, imageFooterPath;
 	
     /**
      * Executes the request and returns PluginResult.
@@ -61,7 +63,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             CordovaResourceApi resourceApi = webView.getResourceApi();
             String target = args.getString(0);
 			hasToLoop = Boolean.valueOf(args.getString(1));
-            final JSONObject options = args.getJSONObject(2);
+			imageHeaderPath = args.getString(2);
+			imageFooterPath = args.getString(3);
+            final JSONObject options = args.getJSONObject(4);
 
             String fileUriStr;
             try {
@@ -181,6 +185,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
 			
 			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
+			
+			WebView imageHeader = (ImageView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
+			
+			if(imageHeaderPath != null && imageHeaderPath.equals("")){
+				imageHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+			}
 			
 			rlVideo.setOnTouchListener(new View.OnTouchListener() {
 				@Override

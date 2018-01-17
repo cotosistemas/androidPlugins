@@ -8,8 +8,8 @@
 	android:background="@android:color/darker_gray"
     android:layout_height="match_parent">
     
-    <ImageView
-        android:id="@+id/layout_video_imageview_header"
+    <WebView
+        android:id="@+id/videoplayer_imageview_header"
         android:layout_width="match_parent"
         android:layout_height="100dp"
 		android:background="@android:color/black" />
@@ -21,8 +21,8 @@
         android:layout_alignParentRight="true"        
 		android:layout_centerVertical="true">
 	</VideoView>	
-    <ImageView
-        android:id="@+id/layout_video_imageview_footer"
+    <WebVIew
+        android:id="@+id/videoplayer_imageview_footer"
         android:layout_width="match_parent"
         android:layout_height="100dp"        
         android:layout_alignParentBottom="true"
