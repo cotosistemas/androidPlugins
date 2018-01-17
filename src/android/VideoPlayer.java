@@ -15,6 +15,8 @@ import android.os.Build;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.SurfaceHolder;
+import android.content.Context;
+import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
@@ -189,20 +191,20 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
-				Log.v(LOG_TAG, "image header existe");
 				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				webViewHeader.setPadding(0, 0, 0, 0);
+				webViewHeader.setInitialScale(getScale());
 			}else{
-				Log.v(LOG_TAG, "image header no existe");
 				webViewHeader.setVisibility(View.GONE);
 			}
 			
 			WebView webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
-				Log.v(LOG_TAG, "footer header existe");
 				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				webViewFooter.setPadding(0, 0, 0, 0);
+				webViewFooter.setInitialScale(getScale());
 			}else{
-				Log.v(LOG_TAG, "footer header no existe");
 				webViewFooter.setVisibility(View.GONE);
 			}
 			
@@ -253,6 +255,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			decorView.setSystemUiVisibility(uiOptions);
 		}
     }
+	
+	private int getScale(){
+		Display display = ((WindowManager) getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay(); 
+		int width = display.getWidth(); 
+		Double val = new Double(width)/new Double(PIC_WIDTH);
+		val = val * 100d;
+		return val.intValue();
+}
 
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
