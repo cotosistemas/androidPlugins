@@ -46,7 +46,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private VideoView videoView;
 	private WebView webViewHeader, webViewFooter;
     private MediaPlayer player;	
-	private String[] listaVideos;
+	private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo;
 	private Boolean hasToLoop;
 	private String imageHeaderPath, imageFooterPath;
@@ -65,12 +65,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
             CordovaResourceApi resourceApi = webView.getResourceApi();
             String target = args.getString(0);
+			Log.v(LOG_TAG, target);
+			
 			hasToLoop = Boolean.valueOf(args.getString(1));
-			imageHeaderPath = args.getString(2);
-			imageFooterPath = args.getString(3);
-            final JSONObject options = args.getJSONObject(4);
-
-            String fileUriStr;
+            final JSONObject options = args.getJSONObject(2);
+			
+            
+			String fileUriStr;
             try {
                 Uri targetUri = resourceApi.remapUri(Uri.parse(target));
                 fileUriStr = targetUri.toString();
@@ -90,7 +91,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoUrl = listaVideos[indiceVideo++];			
 			}
 			
-            final String path = stripFileProtocol(videoUrl);			
+			listaVideoImagen = listaVideos.split(";");
+			
+			String imagenHeader, imagenFooter;
+            final String path = stripFileProtocol(listaVideoImagen[0]);			
+			if(listaVideoImagen.length == 1)
+				imagenHeader = 
 			
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
@@ -175,7 +181,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    protected void openVideoDialog(String path, JSONObject options) {
+    protected void openVideoDialog(String path, String imageHeader, String imageFooter, JSONObject options) {
         // Let's create the main dialog
 		if(videoView == null || (videoView != null && !videoView.isPlaying()) ){
 			dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);

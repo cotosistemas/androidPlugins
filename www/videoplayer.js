@@ -12,9 +12,9 @@ module.exports = {
         SCALE_TO_FIT_WITH_CROPPING: 2
     },
 
-    play: function (path, hasToLoop, imageHeader, imageFooter, options, successCallback, errorCallback) {
+    play: function (path, hasToLoop, options, successCallback, errorCallback) {
         options = this.merge(this.DEFAULT_OPTIONS, options);
-        exec(successCallback, errorCallback, "VideoPlayer", "play", [path, hasToLoop, imageHeader, imageFooter, options]);
+        exec(successCallback, errorCallback, "VideoPlayer", "play", [path, hasToLoop, options]);
     },
 
     close: function (successCallback, errorCallback) {
