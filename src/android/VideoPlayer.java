@@ -190,12 +190,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			if(imageHeaderPath != null && imageHeaderPath.equals("")){
 				imageHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+			}else{
+				imageHeader.setVisibility(View.GONE);
 			}
 			
 			WebView imageFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && imageFooterPath.equals("")){
 				imageFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+			}else{
+				imageFooter.setVisibility(View.GONE);
 			}
 			
 			rlVideo.setOnTouchListener(new View.OnTouchListener() {
