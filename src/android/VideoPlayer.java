@@ -91,7 +91,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoUrl = listaVideos[indiceVideo++];			
 			}
 					
-			String imagenHeader, imagenFooter;
             final String path = stripFileProtocol(videoUrl);					
 			
             // Create dialog in new thread
