@@ -192,8 +192,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
 				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
-				webViewHeader.setPadding(0, 0, 0, 0);
-				webViewHeader.setInitialScale(1);
+				webViewHeader.getSettings().setLoadWithOverviewMode(true);
+				webViewHeader.getSettings().setUseWideViewPort(true);
 			}else{
 				webViewHeader.setVisibility(View.GONE);
 			}
@@ -202,8 +202,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
 				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
-				webViewFooter.setPadding(0, 0, 0, 0);
-				webViewFooter.setInitialScale(1);
+				webViewFooter.getSettings().setLoadWithOverviewMode(true);
+				webViewFooter.getSettings().setUseWideViewPort(true);
 			}else{
 				webViewFooter.setVisibility(View.GONE);
 			}
