@@ -18,6 +18,8 @@
 		android:id="@+id/layout_video_viewvideo"
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"	
+		android:layout_below="@+id/videoplayer_imageview_header"
+        android:layout_above="@+id/videoplayer_imageview_footer"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"        
 		android:layout_centerVertical="true">
