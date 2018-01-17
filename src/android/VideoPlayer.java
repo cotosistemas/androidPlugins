@@ -41,7 +41,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private CallbackContext callbackContext = null;
     private Dialog dialog;
     private VideoView videoView;
-	private WebView imageViewHeader, imageViewFooter;
+	private WebView webViewHeader, webViewFooter;
     private MediaPlayer player;	
 	private String[] listaVideos;
 	private Integer indiceVideo;
@@ -158,8 +158,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void rotateView(String rotation) {
 		 if (dialog != null) {	
-			imageViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_header", "id", cordova.getActivity().getPackageName()));
-			imageViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_imageview_footer", "id", cordova.getActivity().getPackageName()));			
+			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
+			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));			
 			
 			if(rotation.equals("landscape")){
 				imageViewHeader.setVisibility(View.GONE);
@@ -186,20 +186,20 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 			
-			WebView imageHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
+			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){
-				imageHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				webViewHeader.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageHeaderPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 			}else{
-				imageHeader.setVisibility(View.GONE);
+				webViewHeader.setVisibility(View.GONE);
 			}
 			
-			WebView imageFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
+			WebView webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){
-				imageFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
+				webViewFooter.loadDataWithBaseURL(null, "<html><head></head><body><table style=\"width:100%; height:100%;\"><tr><td style=\"vertical-align:middle;\"><img src=\"" + imageFooterPath + "\"></td></tr></table></body></html>", "html/css", "utf-8", null);
 			}else{
-				imageFooter.setVisibility(View.GONE);
+				webViewFooter.setVisibility(View.GONE);
 			}
 			
 			rlVideo.setOnTouchListener(new View.OnTouchListener() {
