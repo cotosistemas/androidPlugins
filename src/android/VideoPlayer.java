@@ -191,7 +191,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageHeader != null && !imageHeader.equals("")){							
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
-					"<img src="+imageHeaderPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+					"<img src="+imageHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
 					"</body>", "text/html", "utf-8", "");
 				//webViewHeader.loadUrl(imageHeaderPath);
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
@@ -206,7 +206,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageFooter != null && !imageFooter.equals("")){				
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
-					"<img src="+imageFooterPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+					"<img src="+imageFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
 					"</body>", "text/html", "utf-8", "");
 				//webViewFooter.loadUrl(imageFooterPath);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
