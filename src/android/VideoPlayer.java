@@ -68,15 +68,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             String target = args.getString(0);
 			Log.v(LOG_TAG, target);
 			
-			JSONObject obj = new JSONObject(" .... ");
-			String pageName = obj.getJSONObject("pageInfo").getString("pageName");
-
-			JSONArray arr = obj.getJSONArray("posts");
-			for (int i = 0; i < arr.length(); i++)
-			{
-				String post_id = arr.getJSONObject(i).getString("post_id");
-				......
-			}
+			JSONObject obj = new JSONObject(target);
+			//String pageName = obj.getJSONObject("videos");
+			String video, imagenHeader, imagenFooter;
+			JSONArray arr = obj.getJSONArray("FilterList");
+			/*for (int i = 0; i < arr.length(); i++)
+			{*/
+			
+						
+			//}
 			
 			hasToLoop = Boolean.valueOf(args.getString(1));
             final JSONObject options = args.getJSONObject(2);
@@ -93,21 +93,28 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             Log.v(LOG_TAG, fileUriStr);
 			indiceVideo = 0;
 			
+			video = arr.getJSONObject(indiceVideo).getString("PathCompleto");					
+			imagenHeader = arr.getJSONObject(indiceVideo).getString("ImageFooterPath");		
+			imagenFooter = arr.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
+			indiceVideo++;
+			
 			String urls="";
-			listaVideos = fileUriStr.split(",");
+			//listaVideos = fileUriStr.split(",");
 			String videoUrl="";
-			if(listaVideos.length > 1){
+			/*if(listaVideos.length > 1){
 				videoUrl = listaVideos[indiceVideo++];											
 			}else{
 				videoUrl = listaVideos[indiceVideo++];			
-			}
+			}*/
+			
+			
 					
-            final String path = stripFileProtocol(videoUrl);					
+            //final String path = stripFileProtocol(videoUrl);					
 			
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
                 public void run() {
-                    openVideoDialog(path, "", "", options);
+                    openVideoDialog(video, imagenHeader, imagenFooter, options);
                 }
             });
 
