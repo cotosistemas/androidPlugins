@@ -188,7 +188,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
 			
-			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){							
+			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
+				webViewHeader.setVisibility(View.VISIBLE);			
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
@@ -197,13 +198,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-			}else{
+			}else
 				webViewHeader.setVisibility(View.GONE);
-			}
+			
 			
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
-			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){				
+			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
+				webViewFooter.setVisibility(View.VISIBLE);			
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
@@ -212,9 +214,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-			}else{
+			}else
 				webViewFooter.setVisibility(View.GONE);
-			}
+			
 			
 			webViewHeader.setOnTouchListener(new View.OnTouchListener() {
 				@Override
@@ -284,6 +286,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			if(imagenHeader != null && !imagenHeader.equals("") && !imagenHeader.equals("null")){
+				webViewHeader.setVisibility(View.VISIBLE);
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
@@ -294,6 +297,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewHeader.setVisibility(View.GONE);
 				
 			if(imagenFooter != null && !imagenFooter.equals("") && !imagenFooter.equals("null")){
+				webViewFooter.setVisibility(View.VISIBLE);
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
