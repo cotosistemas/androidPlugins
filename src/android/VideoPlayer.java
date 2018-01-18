@@ -172,7 +172,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    protected void openVideoDialog(String path, String imageHeader, String imageFooter, JSONObject options) {
+    protected void openVideoDialog(String path, String imageHeaderPath, String imageHeaderPath, JSONObject options) {
         // Let's create the main dialog
 		if(videoView == null || (videoView != null && !videoView.isPlaying()) ){
 			dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
@@ -189,11 +189,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){							
-				/*webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageHeaderPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-					"</body>", "text/html", "utf-8", "");*/
-				webViewHeader.loadUrl(imageHeaderPath);
+					"</body>", "text/html", "utf-8", "");
+				//webViewHeader.loadUrl(imageHeaderPath);
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
@@ -204,11 +204,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			if(imageFooterPath != null && !imageFooterPath.equals("")){				
-				/*webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageFooterPath+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-					"</body>", "text/html", "utf-8", "");*/
-				webViewFooter.loadUrl(imageFooterPath);
+					"</body>", "text/html", "utf-8", "");
+				//webViewFooter.loadUrl(imageFooterPath);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
@@ -284,22 +284,22 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			if(imagenHeader != null && !imagenHeader.equals("")){
-				/*webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imagenHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-					"</body>", "text/html", "utf-8", "");*/
-				webViewHeader.loadUrl(imagenHeader);
+					"</body>", "text/html", "utf-8", "");
+				//webViewHeader.loadUrl(imagenHeader);
 			}else
 				webViewHeader.setVisibility(View.GONE);
 				
 			if(imagenFooter != null && !imagenFooter.equals("")){
-				/*webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imagenFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-					"</body>", "text/html", "utf-8", "");*/
-				webViewFooter.loadUrl(imagenFooter);
+					"</body>", "text/html", "utf-8", "");
+				//webViewFooter.loadUrl(imagenFooter);
 			}else
 				webViewFooter.setVisibility(View.GONE);
 			indiceVideo++;							
