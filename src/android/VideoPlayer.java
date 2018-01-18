@@ -277,7 +277,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 							dialog.dismiss();
 						}else{
 							indiceVideo = 0;	
-							runNextVideo(webViewHeader, webViewFooter);
+							runNextVideo();
 							/*if(imagenHeader != null && !imagenHeader.equals("")){
 								webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 								"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
@@ -302,7 +302,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 							
 						}
 					}else{
-						runNextVideo(webViewHeader, webViewFooter);
+						runNextVideo();
 						/*Uri uri= Uri.parse(listaVideos[indiceVideo++]);
 						videoView.setVideoURI(uri);
 						videoView.start();*/
@@ -328,7 +328,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	public void runNextVideo(WebView webViewHeader, WebView webViewFooter){
+	public void runNextVideo(){
 		try{
 			video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");								
