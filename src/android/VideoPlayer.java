@@ -354,8 +354,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			Uri uri= Uri.parse(video);
 			videoView.setVideoURI(uri);
 			videoView.start();
-		}catch(Exception ex){
-			ex.printStackTrace();
+		}catch(Exception ex){			
+			Log.v(LOG_TAG, ex.printStackTrace());
 		}
 	}
 	
