@@ -267,7 +267,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				}
 			});
 			
-			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() throws JSONException{
+			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
 				public void onCompletion(MediaPlayer mediaPlayer) {              
 					if(indiceVideo == videoArrJson.length()){
@@ -328,31 +328,35 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	public void runNextVideo() throws JSONException{
-		video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
-		imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");								
-		imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
-		if(imagenHeader != null && !imagenHeader.equals("")){
-			webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
-				"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
-				+"<td align=\"center\" valign=\"center\">\n" +
-				"<img src="+imagenHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-				"</body>", "text/html", "utf-8", "");
-		}else
-			webViewHeader.setVisibility(View.GONE);
-			
-		if(imagenFooter != null && !imagenFooter.equals("")){
-			webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
-				"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
-				+"<td align=\"center\" valign=\"center\">\n" +
-				"<img src="+imagenFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
-				"</body>", "text/html", "utf-8", "");
-		}else
-			webViewFooter.setVisibility(View.GONE);
-		indiceVideo++;							
-		Uri uri= Uri.parse(video);
-		videoView.setVideoURI(uri);
-		videoView.start();
+	public void runNextVideo(){
+		try{
+			video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
+			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");								
+			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
+			if(imagenHeader != null && !imagenHeader.equals("")){
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+					+"<td align=\"center\" valign=\"center\">\n" +
+					"<img src="+imagenHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+					"</body>", "text/html", "utf-8", "");
+			}else
+				webViewHeader.setVisibility(View.GONE);
+				
+			if(imagenFooter != null && !imagenFooter.equals("")){
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+					+"<td align=\"center\" valign=\"center\">\n" +
+					"<img src="+imagenFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+					"</body>", "text/html", "utf-8", "");
+			}else
+				webViewFooter.setVisibility(View.GONE);
+			indiceVideo++;							
+			Uri uri= Uri.parse(video);
+			videoView.setVideoURI(uri);
+			videoView.start();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
 	}
 	
     @Override
