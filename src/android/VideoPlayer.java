@@ -47,11 +47,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private VideoView videoView;
 	private WebView webViewHeader, webViewFooter;
     private MediaPlayer player;	
-	private String[] listaVideos, listaVideoImagen;
+	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo;
 	private Boolean hasToLoop;
-	String video, imagenHeader, imagenFooter;
+	private String video, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
+	private JSONArray videoArrJson;
 	
     /**
      * Executes the request and returns PluginResult.
@@ -72,7 +73,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			JSONObject obj = new JSONObject(target);
 			//String pageName = obj.getJSONObject("videos");
 			
-			JSONArray arr = obj.getJSONArray("FilterList");
+			videoArrJson = obj.getJSONArray("FilterList");
 			/*for (int i = 0; i < arr.length(); i++)
 			{*/
 			
@@ -94,10 +95,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             //Log.v(LOG_TAG, fileUriStr);
 			indiceVideo = 0;
 			
-			video = arr.getJSONObject(indiceVideo).getString("PathCompleto");					
-			imagenHeader = arr.getJSONObject(indiceVideo).getString("ImageFooterPath");	
+			video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
+			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			Log.v(LOG_TAG, imagenHeader);			
-			imagenFooter = arr.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
+			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
 			Log.v(LOG_TAG, imagenFooter);			
 			indiceVideo++;
 			
@@ -269,20 +270,42 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
 				public void onCompletion(MediaPlayer mediaPlayer) {              
-					if(indiceVideo == listaVideos.length){
+					if(indiceVideo == videoArrJson.length()){
+						
 						if(!hasToLoop){
 							videoView.stopPlayback();
 							dialog.dismiss();
 						}else{
-							indiceVideo = 0;
-							Uri uri= Uri.parse(listaVideos[indiceVideo++]);
+							indiceVideo = 0;	
+							runNextVideo();
+							/*if(imagenHeader != null && !imagenHeader.equals("")){
+								webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+								"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+								+"<td align=\"center\" valign=\"center\">\n" +
+								"<img src="+imagenHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+								"</body>", "text/html", "utf-8", "");
+							}else
+								webViewHeader.setVisibility(View.GONE);
+							
+							if(imagenFooter != null && !imagenFooter.equals("")){
+								webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+								"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+								+"<td align=\"center\" valign=\"center\">\n" +
+								"<img src="+imagenFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+								"</body>", "text/html", "utf-8", "");
+							}else
+								webViewFooter.setVisibility(View.GONE);
+							indiceVideo++;							
+							Uri uri= Uri.parse(video);
 							videoView.setVideoURI(uri);
-							videoView.start();
+							videoView.start();*/
+							
 						}
 					}else{
-						Uri uri= Uri.parse(listaVideos[indiceVideo++]);
+						runNextVideo();
+						/*Uri uri= Uri.parse(listaVideos[indiceVideo++]);
 						videoView.setVideoURI(uri);
-						videoView.start();
+						videoView.start();*/
 					}
 				}
 			});			
@@ -304,6 +327,33 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			decorView.setSystemUiVisibility(uiOptions);
 		}
     }
+	
+	public void runNextVideo(){
+		video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
+		imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");								
+		imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
+		if(imagenHeader != null && !imagenHeader.equals("")){
+			webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+				+"<td align=\"center\" valign=\"center\">\n" +
+				"<img src="+imagenHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+				"</body>", "text/html", "utf-8", "");
+		}else
+			webViewHeader.setVisibility(View.GONE);
+			
+		if(imagenFooter != null && !imagenFooter.equals("")){
+			webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
+				"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
+				+"<td align=\"center\" valign=\"center\">\n" +
+				"<img src="+imagenFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
+				"</body>", "text/html", "utf-8", "");
+		}else
+			webViewFooter.setVisibility(View.GONE);
+		indiceVideo++;							
+		Uri uri= Uri.parse(video);
+		videoView.setVideoURI(uri);
+		videoView.start();
+	}
 	
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
