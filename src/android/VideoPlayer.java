@@ -50,6 +50,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo;
 	private Boolean hasToLoop;
+	String video, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
 	
     /**
@@ -70,7 +71,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			JSONObject obj = new JSONObject(target);
 			//String pageName = obj.getJSONObject("videos");
-			String video, imagenHeader, imagenFooter;
+			
 			JSONArray arr = obj.getJSONArray("FilterList");
 			/*for (int i = 0; i < arr.length(); i++)
 			{*/
