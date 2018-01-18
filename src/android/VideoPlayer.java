@@ -267,7 +267,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				}
 			});
 			
-			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() throws JSONException{
 				@Override
 				public void onCompletion(MediaPlayer mediaPlayer) {              
 					if(indiceVideo == videoArrJson.length()){
