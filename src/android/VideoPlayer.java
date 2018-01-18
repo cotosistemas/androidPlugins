@@ -83,20 +83,22 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             final JSONObject options = args.getJSONObject(2);
 			
             
-			String fileUriStr;
+			/*String fileUriStr;
             try {
                 Uri targetUri = resourceApi.remapUri(Uri.parse(target));
                 fileUriStr = targetUri.toString();
             } catch (IllegalArgumentException e) {
                 fileUriStr = target;
-            }
+            }*/
 
-            Log.v(LOG_TAG, fileUriStr);
+            //Log.v(LOG_TAG, fileUriStr);
 			indiceVideo = 0;
 			
 			video = arr.getJSONObject(indiceVideo).getString("PathCompleto");					
-			imagenHeader = arr.getJSONObject(indiceVideo).getString("ImageFooterPath");		
+			imagenHeader = arr.getJSONObject(indiceVideo).getString("ImageFooterPath");	
+			Log.v(LOG_TAG, imagenHeader);			
 			imagenFooter = arr.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
+			Log.v(LOG_TAG, imagenFooter);			
 			indiceVideo++;
 			
 			String urls="";
@@ -322,7 +324,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @Override
     public void onCompletion(MediaPlayer mp) {
         Log.d(LOG_TAG, "MediaPlayer completed");
-        mp.release();
+        //mp.release();
         dialog.dismiss();
     }
 
