@@ -328,7 +328,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	public void runNextVideo(){
+	public void runNextVideo() throws JSONException{
 		video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
 		imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");								
 		imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
