@@ -208,7 +208,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 			
-			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
+			WebView webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
 			
 			if(imageHeaderPath != null && !imageHeaderPath.equals("")){							
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
@@ -252,16 +252,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					dialog.dismiss();
 					return false;
 				}
-			});
-			
-			videoplayer_imageview_header.setOnTouchListener(new View.OnTouchListener() {
-				@Override
-				public boolean onTouch(View view, MotionEvent motionEvent) {
-					videoView.stopPlayback();
-					dialog.dismiss();
-					return false;
-				}
-			});
+			});				
 			
 			rlVideo.setOnTouchListener(new View.OnTouchListener() {
 				@Override
