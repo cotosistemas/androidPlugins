@@ -188,7 +188,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
 			
-			if(imageHeader != null && !imageHeader.equals("")){							
+			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){							
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageHeader+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
@@ -203,7 +203,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
-			if(imageFooter != null && !imageFooter.equals("")){				
+			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){				
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
@@ -283,7 +283,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			video = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");					
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
-			if(imagenHeader != null && !imagenHeader.equals("")){
+			if(imagenHeader != null && !imagenHeader.equals("") && !imagenHeader.equals("null")){
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
@@ -293,7 +293,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else
 				webViewHeader.setVisibility(View.GONE);
 				
-			if(imagenFooter != null && !imagenFooter.equals("")){
+			if(imagenFooter != null && !imagenFooter.equals("") && !imagenFooter.equals("null")){
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
 					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"100%\">\n" +"<tr>\n" 
 					+"<td align=\"center\" valign=\"center\">\n" +
