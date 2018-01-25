@@ -207,7 +207,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
-					"<body bgcolor=\"white\">\n" +"<table width=\"100%\" height=\"1920px\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
+					"<body bgcolor=\"white\">\n" +"<table cellpadding=\"0\" cellspacing=\"0\" width=\"100%\" height=\"100%\" style=\"border:0;\">\n" +"<tr>\n" +"<td align=\"center\" valign=\"center\">\n" +
 					"<img src="+imageFooter+">\n" + "</td>\n" + "</tr>\n" + "</table>\n" +
 					"</body>", "text/html", "utf-8", "");
 				//webViewFooter.loadUrl(imageFooterPath);
