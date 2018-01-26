@@ -203,7 +203,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
-				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src=\""+imageFooter+"\"></img> </body>", "text/html", "utf-8", "");
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageFooter+"></img> </body>", "text/html", "utf-8", "");
 				//webViewFooter.loadUrl(imageFooterPath);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
@@ -281,14 +281,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			if(imagenHeader != null && !imagenHeader.equals("") && !imagenHeader.equals("null")){
 				webViewHeader.setVisibility(View.VISIBLE);
-				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src=\""+imagenHeader+"\"></img></body>", "text/html", "text/html", "utf-8", "");
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imagenHeader+"></img></body>", "text/html", "utf-8", "");
 				//webViewHeader.loadUrl(imagenHeader);
 			}else
 				webViewHeader.setVisibility(View.GONE);
 				
 			if(imagenFooter != null && !imagenFooter.equals("") && !imagenFooter.equals("null")){
 				webViewFooter.setVisibility(View.VISIBLE);
-				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src=\""+imagenFooter+"\"></img> </body>", "text/html", "utf-8", "");
+				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imagenFooter+"></img> </body>", "text/html", "utf-8", "");
 				//webViewFooter.loadUrl(imagenFooter);
 			}else
 				webViewFooter.setVisibility(View.GONE);
