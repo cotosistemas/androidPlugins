@@ -190,7 +190,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
-				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html> <body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img> </body>", "text/html", "utf-8", "");
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html> <body style='margin:0;padding:0;' bgcolor=\"blue\"> <img src="+imageHeader+"></img> </body>", "text/html", "utf-8", "");
 				//webViewHeader.loadUrl(imageHeaderPath);
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);
@@ -204,7 +204,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html>\n" +
-					"<body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageFooter+"></img> </body>", "text/html", "utf-8", "");
+					"<body style='margin:0;padding:0;' bgcolor=\"red\"> <img src="+imageFooter+"></img> </body>", "text/html", "utf-8", "");
 				//webViewFooter.loadUrl(imageFooterPath);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
