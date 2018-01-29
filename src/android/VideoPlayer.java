@@ -257,38 +257,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						}
 					});
 				}
-			});*/
-			
-			final MediaPlayer.OnInfoListener onInfoToPlayStateListener = new MediaPlayer.OnInfoListener() {
-				@Override
-				public boolean onInfo(MediaPlayer mp, int what, int extra) {
-					switch (what) {
-						case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START: {
-							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
-								webViewHeader.setVisibility(View.GONE);								
-								webViewFooter.setVisibility(View.GONE);
-							}		
-							return true;
-						}
-						case MediaPlayer.MEDIA_INFO_BUFFERING_START: {
-						
-							return true;
-						}
-						case MediaPlayer.MEDIA_INFO_BUFFERING_END: {
-							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-								//webViewHeader.setVisibility(View.VISIBLE);
-								//webViewFooter.setVisibility(View.VISIBLE);
-							}
-							return true;
-						}
-					}
-					return false;
-				}
-
-			};
-
-			videoView.setOnInfoListener(onInfoToPlayStateListener);
-
+			});*/						
 			
 			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
@@ -365,8 +334,22 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-        //mp.start();
-    }
+		mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+			@Override
+			public boolean onInfo(MediaPlayer mp, int what, int extra) {
+				
+				if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
+					webViewHeader.setVisibility(View.GONE);								
+					webViewFooter.setVisibility(View.GONE);
+				}							
+				if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
+					webViewHeader.setVisibility(View.VISIBLE);
+					webViewFooter.setVisibility(View.VISIBLE);
+				}
+				return false;
+			}
+		});
+	}		
 
     @Override
     public void onCompletion(MediaPlayer mp) {
