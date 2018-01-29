@@ -239,7 +239,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				}
 			});
 			
-			 videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			 /*videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 				@Override
 				public void onPrepared(MediaPlayer mp) {
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
@@ -258,7 +258,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						}
 					});
 				}
-			});
+			});*/
 			
 			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
