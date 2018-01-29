@@ -249,9 +249,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 								webViewHeader.setVisibility(View.GONE);
 								webViewFooter.setVisibility(View.GONE);
 							}if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-								if(imageHeader != null && !imageHeader.equals(""))
+								if(imageHeader != null && !imageHeader.equals("") && !imageFooter.equals("null"))
 									webViewHeader.setVisibility(View.VISIBLE);
-								if(imageFooter != null && !imageFooter.equals(""))
+								if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null"))
 									webViewFooter.setVisibility(View.VISIBLE);
 							}
 							return false;
