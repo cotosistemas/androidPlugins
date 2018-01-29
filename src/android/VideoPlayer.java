@@ -244,11 +244,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						@Override
 						public boolean onInfo(MediaPlayer mp, int what, int extra) {
 							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){	
-								if(webViewHeader.getVisibility().equals(View.VISIBLE))							
+								if(webViewHeader.getVisibility() == View.VISIBLE)							
 									hasHeader = true;
 								else
 									hasHeader = false;
-								if(webViewHeader.getVisibility().equals(View.VISIBLE))							
+								if(webViewHeader.getVisibility() == View.VISIBLE)							
 									hasFooter = true;
 								else
 									hasFooter = false;
