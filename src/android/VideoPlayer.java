@@ -186,10 +186,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 			
-			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
-			
-			hasFooter = false;
-			hasHeader = false;
+			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));							
 			
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
@@ -197,7 +194,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-				hasHeader = true;
 			}else
 				webViewHeader.setVisibility(View.GONE);
 			
@@ -210,7 +206,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-				hasFooter = true;
 			}else
 				webViewFooter.setVisibility(View.GONE);
 			
@@ -248,9 +243,17 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 						@Override
 						public boolean onInfo(MediaPlayer mp, int what, int extra) {
-							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){																
-									webViewHeader.setVisibility(View.GONE);								
-									webViewFooter.setVisibility(View.GONE);
+							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){	
+								if(webViewHeader.getVisibility().equals(View.VISIBLE))							
+									hasHeader = true;
+								else
+									hasHeader = false;
+								if(webViewHeader.getVisibility().equals(View.VISIBLE))							
+									hasFooter = true;
+								else
+									hasFooter = false;
+								webViewHeader.setVisibility(View.GONE);								
+								webViewFooter.setVisibility(View.GONE);
 							}
 							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
 								if(hasHeader)
