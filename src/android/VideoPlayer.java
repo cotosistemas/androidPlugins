@@ -271,7 +271,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 							return true;
 						}
 						case MediaPlayer.MEDIA_INFO_BUFFERING_START: {
-							mProgressBar.setVisibility(View.VISIBLE);
+						
 							return true;
 						}
 						case MediaPlayer.MEDIA_INFO_BUFFERING_END: {
