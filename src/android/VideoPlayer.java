@@ -238,7 +238,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				}
 			});
 			
-			 videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+			/*videoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 				@Override
 				public void onPrepared(MediaPlayer mp) {
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
@@ -257,7 +257,38 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						}
 					});
 				}
+			});*/
+			
+			final MediaPlayer.OnInfoListener onInfoToPlayStateListener = new MediaPlayer.OnInfoListener() {
+				@Override
+				public boolean onInfo(MediaPlayer mp, int what, int extra) {
+					switch (what) {
+						case MediaPlayer.MEDIA_INFO_VIDEO_RENDERING_START: {
+							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
+								webViewHeader.setVisibility(View.GONE);								
+								webViewFooter.setVisibility(View.GONE);
+							}		
+							return true;
+						}
+						case MediaPlayer.MEDIA_INFO_BUFFERING_START: {
+							mProgressBar.setVisibility(View.VISIBLE);
+							return true;
+						}
+						case MediaPlayer.MEDIA_INFO_BUFFERING_END: {
+							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
+								webViewHeader.setVisibility(View.VISIBLE);
+								webViewFooter.setVisibility(View.VISIBLE);
+							}
+							return true;
+						}
+					}
+					return false;
+				}
+
 			});
+
+			videoView.setOnInfoListener(onInfoToPlayStateListener);
+
 			
 			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 				@Override
