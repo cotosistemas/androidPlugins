@@ -172,7 +172,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    protected void openVideoDialog(String path, String imageHeader, String imageFooter, JSONObject options) {
+    protected void openVideoDialog(String path, final String imageHeader, final String imageFooter, JSONObject options) {
         // Let's create the main dialog
 		if(videoView == null || (videoView != null && !videoView.isPlaying()) ){
 			dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
