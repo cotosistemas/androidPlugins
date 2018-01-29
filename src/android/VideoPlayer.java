@@ -49,11 +49,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private MediaPlayer player;	
 	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo;
-	private Boolean hasToLoop;
+	private Boolean hasToLoop, hasFooter, hasHeader;
 	private String video, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
 	private JSONArray videoArrJson;
-	
+		
     /**
      * Executes the request and returns PluginResult.
      *
@@ -188,26 +188,29 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));				
 			
+			hasFooter = false;
+			hasHeader = false;
+			
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
-				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img></body>", "text/html", "utf-8", "");
-				//webViewHeader.loadUrl(imageHeaderPath);
+				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img></body>", "text/html", "utf-8", "");			
 				webViewHeader.getSettings().setLoadWithOverviewMode(true);
 				webViewHeader.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				hasHeader = true;
 			}else
 				webViewHeader.setVisibility(View.GONE);
 			
 			
-			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
+			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));					
 			
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageFooter+"></img> </body>", "text/html", "utf-8", "");
-				//webViewFooter.loadUrl(imageFooterPath);
 				webViewFooter.getSettings().setLoadWithOverviewMode(true);
 				webViewFooter.getSettings().setUseWideViewPort(true);
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				hasFooter = true;
 			}else
 				webViewFooter.setVisibility(View.GONE);
 			
@@ -245,14 +248,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 						@Override
 						public boolean onInfo(MediaPlayer mp, int what, int extra) {
-							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){								
-								webViewHeader.setVisibility(View.GONE);
-								webViewFooter.setVisibility(View.GONE);
+							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){																
+									webViewHeader.setVisibility(View.GONE);								
+									webViewFooter.setVisibility(View.GONE);
 							}
 							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-								if(imageHeader != null && !imageHeader.equals("") && !imageFooter.equals("null"))
+								if(hasHeader)
 									webViewHeader.setVisibility(View.VISIBLE);
-								if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null"))
+								if(hasFooter)
 									webViewFooter.setVisibility(View.VISIBLE);
 							}
 							return false;
