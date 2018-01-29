@@ -36,6 +36,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import android.view.MotionEvent;
 import org.json.*;
+import android.widget.Toast;
 import android.view.View;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
@@ -49,7 +50,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private MediaPlayer player;	
 	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo;
-	private Boolean hasToLoop, hasFooter, hasHeader;
+	private Boolean hasToLoop;
 	private String video, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
 	private JSONArray videoArrJson;
@@ -243,23 +244,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 						@Override
 						public boolean onInfo(MediaPlayer mp, int what, int extra) {
-							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){	
-								if(webViewHeader.getVisibility() == View.VISIBLE)							
-									hasHeader = true;
-								else
-									hasHeader = false;
-								if(webViewHeader.getVisibility() == View.VISIBLE)							
-									hasFooter = true;
-								else
-									hasFooter = false;
+							Toast.makeText(getApplicationContext(), what, Toast.LENGTH_LONG);
+							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
 								webViewHeader.setVisibility(View.GONE);								
 								webViewFooter.setVisibility(View.GONE);
-							}
+							}							
 							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-								if(hasHeader)
-									webViewHeader.setVisibility(View.VISIBLE);
-								if(hasFooter)
-									webViewFooter.setVisibility(View.VISIBLE);
+								webViewHeader.setVisibility(View.VISIBLE);
+								webViewFooter.setVisibility(View.VISIBLE);
 							}
 							return false;
 						}
