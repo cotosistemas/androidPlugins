@@ -244,7 +244,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 						@Override
 						public boolean onInfo(MediaPlayer mp, int what, int extra) {
-							Toast.makeText(getApplicationContext(), what, Toast.LENGTH_LONG);
+							Toast.makeText(cordova.getActivity(), what, Toast.LENGTH_LONG);
 							if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
 								webViewHeader.setVisibility(View.GONE);								
 								webViewFooter.setVisibility(View.GONE);
