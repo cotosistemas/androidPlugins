@@ -285,7 +285,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					return false;
 				}
 
-			});
+			};
 
 			videoView.setOnInfoListener(onInfoToPlayStateListener);
 
