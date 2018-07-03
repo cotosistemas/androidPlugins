@@ -38,6 +38,7 @@ import android.view.MotionEvent;
 import org.json.*;
 import android.widget.Toast;
 import android.view.View;
+import android.content.res.Configuration;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
 
@@ -89,6 +90,12 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			String urls="";
 			String videoUrl="";
+			
+			Integer orientation = getResources().getConfiguration().orientation;
+			if(orientation != Configuration.ORIENTATION_PORTRAIT){
+				imagenHeader = "";
+				imagenFooter = "";
+			}
 	
             // Create dialog in new thread
             cordova.getActivity().runOnUiThread(new Runnable() {
