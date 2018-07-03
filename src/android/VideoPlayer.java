@@ -91,7 +91,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			String urls="";
 			String videoUrl="";
 			
-			Integer orientation = getResources().getConfiguration().orientation;
+			Integer orientation = cordova.getActivity().getResources().getConfiguration().orientation;
 			if(orientation != Configuration.ORIENTATION_PORTRAIT){
 				imagenHeader = "";
 				imagenFooter = "";
