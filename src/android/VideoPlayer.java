@@ -51,6 +51,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private MediaPlayer player;	
 	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo, tipo, imagenSegundosReproduccion;
+	private RelativeLayout rlVideo;
 	private Boolean hasToLoop;
 	private String urlPath, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
@@ -169,6 +170,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webView = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
+			
+			rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 
 			if(tipo.equals(5)){
 				webView.setVisibility(View.GONE);
@@ -201,7 +204,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			videoView = (VideoView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("layout_video_viewvideo", "id", cordova.getActivity().getPackageName()));
 			
-			RelativeLayout rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
+			rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));	
 
@@ -324,8 +327,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.setVisibility(View.GONE);
 			indiceVideo++;		
 		
-			webView.setVisibility(GONE);
-			rlVideo.setVisibility(VISIBLE);
+			webView.setVisibility(View.GONE);
+			rlVideo.setVisibility(View.VISIBLE);
 
 			Uri uri= Uri.parse(urlPath);
 			videoView.setVideoURI(uri);
@@ -337,8 +340,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
 	public void runNextImg(){
 			webView.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
-			webView.setVisibility(VISIBLE);
-			rlVideo.setVisibility(GONE);
+			webView.setVisibility(View.VISIBLE);
+			rlVideo.setVisibility(View.GONE);
 	}
 	
     @Override
