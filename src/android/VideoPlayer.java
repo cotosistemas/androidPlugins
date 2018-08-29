@@ -47,7 +47,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private CallbackContext callbackContext = null;
     private Dialog dialog;
     private VideoView videoView;
-	private WebView webViewHeader, webViewFooter, webView;
+	private WebView webViewHeader, webViewFooter, webViewImage;
     private MediaPlayer player;	
 	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo, tipo, imagenSegundosReproduccion;
@@ -167,17 +167,17 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void rotateView(String rotation) {
 		 if (dialog != null) {	
-			webView = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));
+			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
 			rlVideo = (RelativeLayout) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_layout_container", "id", cordova.getActivity().getPackageName()));
 
 			if(tipo.equals(5)){
-				webView.setVisibility(View.GONE);
+				webViewImage.setVisibility(View.GONE);
 				rlVideo.setVisibility(View.VISIBLE);
 			}else{
-				webView.setVisibility(View.VISIBLE);
+				webViewImage.setVisibility(View.VISIBLE);
 				rlVideo.setVisibility(View.GONE);
 			}
 			
@@ -208,7 +208,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));	
 
-			webView = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));							
+			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));							
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img></body>", "text/html", "utf-8", "");			
@@ -231,7 +231,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.setVisibility(View.GONE);
 						
 			if(tipo.equals(5)){
-				webView.setVisibility(View.GONE);
+				webViewImage.setVisibility(View.GONE);
 				rlVideo.setVisibility(View.VISIBLE);
 					
 				rlVideo.setOnTouchListener(new View.OnTouchListener() {
@@ -270,11 +270,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.start();
 			}else{
 				rlVideo.setVisibility(View.GONE);
-				webView.setVisibility(View.VISIBLE);			
-				webView.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			
-				webView.getSettings().setLoadWithOverviewMode(true);
-				webView.getSettings().setUseWideViewPort(true);
-				webView.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				webViewImage.setVisibility(View.VISIBLE);			
+				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			
+				webViewImage.getSettings().setLoadWithOverviewMode(true);
+				webViewImage.getSettings().setUseWideViewPort(true);
+				webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 			}
 			
 			webViewHeader.setOnTouchListener(new View.OnTouchListener() {
@@ -327,7 +327,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.setVisibility(View.GONE);
 			indiceVideo++;		
 		
-			webView.setVisibility(View.GONE);
+			webViewImage.setVisibility(View.GONE);
 			rlVideo.setVisibility(View.VISIBLE);
 
 			Uri uri= Uri.parse(urlPath);
@@ -339,8 +339,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
 	public void runNextImg(){
-			webView.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
-			webView.setVisibility(View.VISIBLE);
+			webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
+			webViewImage.setVisibility(View.VISIBLE);
 			rlVideo.setVisibility(View.GONE);
 	}
 	
