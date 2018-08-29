@@ -269,8 +269,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.setVideoURI(uri);
 				videoView.start();
 			}else{
+				Log.d(LOG_TAG, "Showing image " + urlPath);
 				rlVideo.setVisibility(View.GONE);
-				webViewImage.setVisibility(View.VISIBLE);			
+				webViewImage.setVisibility(View.VISIBLE);	
+				Log.
 				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			
 				
 				webViewImage.setOnTouchListener(new View.OnTouchListener() {
