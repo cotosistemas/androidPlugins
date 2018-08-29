@@ -38,7 +38,7 @@ import android.view.MotionEvent;
 import org.json.*;
 import android.widget.Toast;
 import android.view.View;
-//import android.os.Handler;
+import android.os.Handler;
 import android.content.res.Configuration;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
@@ -351,7 +351,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewImage.setVisibility(View.VISIBLE);
 			videoView.setVisibility(View.GONE);
 			
-			/*final Handler handler = new Handler();
+			final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 			  @Override
 			  public void run() {
@@ -368,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					runNextImg();
 					
 			  }
-			}, imagenSegundosReproduccion);*/
+			}, imagenSegundosReproduccion);
 	}
 	
     @Override
