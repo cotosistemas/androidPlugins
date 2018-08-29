@@ -38,7 +38,7 @@ import android.view.MotionEvent;
 import org.json.*;
 import android.widget.Toast;
 import android.view.View;
-import android.os.Handler;
+//import android.os.Handler;
 import android.content.res.Configuration;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
@@ -115,7 +115,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
             return true;
         }
-		
         else if (action.equals("close")) {
             if (dialog != null) {
                 if(player.isPlaying()) {
@@ -195,7 +194,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
-    protected void openVideoDialog(String path, final String imageHeader, final String imageFooter, JSONObject options) throws JSONException{
+    protected void openVideoDialog(String path, final String imageHeader, final String imageFooter, JSONObject options) {
         // Let's create the main dialog
 		if(videoView == null || (videoView != null && !videoView.isPlaying())){
 			dialog = new Dialog(cordova.getActivity(), android.R.style.Theme_NoTitleBar);
@@ -316,7 +315,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	public void runNextVideo() throws JSONException{
+	public void runNextVideo(){
 		try{					
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
@@ -346,13 +345,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
 	}
 	
-	public void runNextImg() throws JSONException{
+	public void runNextImg(){
 			
 			webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
 			webViewImage.setVisibility(View.VISIBLE);
 			videoView.setVisibility(View.GONE);
 			
-			final Handler handler = new Handler();
+			/*final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 			  @Override
 			  public void run() {
@@ -369,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					runNextImg();
 					
 			  }
-			}, imagenSegundosReproduccion);
+			}, imagenSegundosReproduccion);*/
 	}
 	
     @Override
