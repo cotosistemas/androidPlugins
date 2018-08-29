@@ -73,9 +73,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
             String target = args.getString(0);
 			Log.v(LOG_TAG, target);
 			
-			JSONObject obj = new JSONObject(target);
+			//JSONObject obj = new JSONObject(target);
+			JSONArray videoArrJson = new JSONArray(target);
 		
-			videoArrJson = obj.getJSONArray("FilterList");	
+			//videoArrJson = obj.getJSONArray("FilterList");	
 			
 			hasToLoop = Boolean.valueOf(args.getString(1));
             final JSONObject options = args.getJSONObject(2);
