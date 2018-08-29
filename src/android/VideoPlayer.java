@@ -247,7 +247,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 					@Override
 					public void onCompletion(MediaPlayer mediaPlayer) {              
-						if(indiceVideo == videoArrJson.getJSONObject().length()){						
+						if(indiceVideo == videoArrJson.length()){						
 							if(!hasToLoop){
 								videoView.stopPlayback();
 								dialog.dismiss();
