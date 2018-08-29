@@ -13,14 +13,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
 		android:layout_alignParentTop="true"
-		android:scrollbars="none"		/>
+		android:scrollbars="none"/>
 		
 	<WebView
         android:id="@+id/videoplayer_imageview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
 		android:layout_alignParentTop="true"
-		android:scrollbars="none"		/>
+		android:scrollbars="none"/>
+		
 	<VideoView
 		android:id="@+id/layout_video_viewvideo"
 		android:layout_width="match_parent"
@@ -31,6 +32,7 @@
         android:layout_alignParentRight="true"        
 		android:layout_centerVertical="true">
 	</VideoView>	
+	
     <WebView
         android:id="@+id/videoplayer_imageview_footer"
         android:layout_width="match_parent"

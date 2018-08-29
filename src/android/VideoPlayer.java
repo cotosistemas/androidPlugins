@@ -51,7 +51,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     private MediaPlayer player;	
 	//private String[] listaVideos, listaVideoImagen;
 	private Integer indiceVideo, tipo, imagenSegundosReproduccion;
-	private Boolean hasToLoop, esPropaganda;
+	private Boolean hasToLoop;
 	private String urlPath, imagenHeader, imagenFooter;
 	private String imageHeaderPath, imageFooterPath;
 	private JSONArray videoArrJson;
@@ -83,10 +83,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");	
 			tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");	
-			esPropaganda = videoArrJson.getJSONObject(indiceVideo).getBoolean("EsPropaganda");	
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
-			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");	
+			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
 			indiceVideo++;
 			
 			String urls="";
@@ -206,8 +205,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));	
 
-			webView = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));				
-			
+			webView = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));							
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img></body>", "text/html", "utf-8", "");			
@@ -251,10 +249,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 								dialog.dismiss();
 							}else{
 								indiceVideo = 0;	
-								runNextVideo();													
+								if(tipo.equals(5))
+									runNextVideo();													
+								else
+									runNextImg();
 							}
 						}else{
-							runNextVideo();				
+							if(tipo.equals(5))
+								runNextVideo();	
+							else
+								runNextImg();
 						}
 					}
 				});
@@ -318,21 +322,23 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imagenFooter+"></img> </body>", "text/html", "utf-8", "");
 			}else
 				webViewFooter.setVisibility(View.GONE);
-			indiceVideo++;					
-			if(tipo.equals(5)){
-				webView.setVisibility(GONE);
-				rlVideo.setVisibility(VISIBLE);
-				Uri uri= Uri.parse(urlPath);
-				videoView.setVideoURI(uri);
-				videoView.start();
-			}else{
-				webView.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
-				webView.setVisibility(VISIBLE);
-				rlVideo.setVisibility(GONE);
-			}
+			indiceVideo++;		
+		
+			webView.setVisibility(GONE);
+			rlVideo.setVisibility(VISIBLE);
+
+			Uri uri= Uri.parse(urlPath);
+			videoView.setVideoURI(uri);
+			videoView.start();				
 		}catch(Exception ex){			
 			ex.printStackTrace();
 		}
+	}
+	
+	public void runNextImg(){
+			webView.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
+			webView.setVisibility(VISIBLE);
+			rlVideo.setVisibility(GONE);
 	}
 	
     @Override
