@@ -38,6 +38,7 @@ import android.view.MotionEvent;
 import org.json.*;
 import android.widget.Toast;
 import android.view.View;
+import android.os.Handler;
 import android.content.res.Configuration;
 
 public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, OnPreparedListener, OnErrorListener, OnDismissListener {
@@ -265,10 +266,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.setVideoURI(uri);
 				videoView.start();
 			}else{
-				Log.d(LOG_TAG, "Showing image " + urlPath);
-				videoView.setVisibility(View.GONE);
-				webViewImage.setVisibility(View.VISIBLE);	
-				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			
+				Log.d(LOG_TAG, "Showing image " + urlPath);			
+				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			*/
 				
 				webViewImage.setOnTouchListener(new View.OnTouchListener() {
 					@Override
@@ -281,6 +280,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewImage.getSettings().setLoadWithOverviewMode(true);
 				webViewImage.getSettings().setUseWideViewPort(true);
 				webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				runNextImg();
 			}
 			
 			webViewHeader.setOnTouchListener(new View.OnTouchListener() {
@@ -368,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					runNextImg();
 					
 			  }
-			}, 5000);
+			}, imagenSegundosReproduccion);
 	}
 	
     @Override
