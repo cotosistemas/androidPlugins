@@ -115,6 +115,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
             return true;
         }
+		
         else if (action.equals("close")) {
             if (dialog != null) {
                 if(player.isPlaying()) {
@@ -315,7 +316,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
     }
 	
-	public void runNextVideo(){
+	public void runNextVideo() throws JSONException{
 		try{					
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
@@ -345,7 +346,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		}
 	}
 	
-	public void runNextImg(){
+	public void runNextImg() throws JSONException{
 			
 			webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
 			webViewImage.setVisibility(View.VISIBLE);
