@@ -176,10 +176,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
 			if(tipo.equals(5)){
 				webViewImage.setVisibility(View.GONE);
-				rlVideo.setVisibility(View.VISIBLE);
+				videoView.setVisibility(View.VISIBLE);
 			}else{
 				webViewImage.setVisibility(View.VISIBLE);
-				rlVideo.setVisibility(View.GONE);
+				videoView.setVisibility(View.GONE);
 			}
 			
 			if(rotation.equals("landscape")){
@@ -232,7 +232,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						
 			if(tipo.equals(5)){
 				webViewImage.setVisibility(View.GONE);
-				rlVideo.setVisibility(View.VISIBLE);
+				videoView.setVisibility(View.VISIBLE);
 					
 				rlVideo.setOnTouchListener(new View.OnTouchListener() {
 					@Override
@@ -270,7 +270,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.start();
 			}else{
 				Log.d(LOG_TAG, "Showing image " + urlPath);
-				rlVideo.setVisibility(View.GONE);
+				videoView.setVisibility(View.GONE);
 				webViewImage.setVisibility(View.VISIBLE);	
 				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			
 				
@@ -338,7 +338,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			indiceVideo++;		
 		
 			webViewImage.setVisibility(View.GONE);
-			rlVideo.setVisibility(View.VISIBLE);
+			videoView.setVisibility(View.VISIBLE);
 
 			Uri uri= Uri.parse(urlPath);
 			videoView.setVideoURI(uri);
@@ -351,7 +351,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	public void runNextImg(){
 			webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
 			webViewImage.setVisibility(View.VISIBLE);
-			rlVideo.setVisibility(View.GONE);
+			videoView.setVisibility(View.GONE);
 	}
 	
     @Override
