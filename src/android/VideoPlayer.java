@@ -369,7 +369,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						
 				  }
 				}, imagenSegundosReproduccion*1000);
-			}catch(Exception ex){
+			}catch(JSONException ex){
 				
 			}
 	}
