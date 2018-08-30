@@ -169,7 +169,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	@TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     protected void rotateView(String rotation) {
 		 if (dialog != null) {	
-			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));
+			/*webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));
 			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));
 			
@@ -189,8 +189,11 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else{
 				webViewHeader.setVisibility(View.VISIBLE);
 				webViewFooter.setVisibility(View.VISIBLE);
-			}		
-		}		
+			}*/
+			if(tipo.equals(5))
+				videoView.stopPlayback();
+			dialog.dismiss();
+		}	
 	}
 	
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
