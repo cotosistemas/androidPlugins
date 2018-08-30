@@ -351,7 +351,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewImage.setVisibility(View.VISIBLE);
 			videoView.setVisibility(View.GONE);
 			
-			final Handler handler = new Handler();
+			/*final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 			  @Override
 			  public void run() {
@@ -368,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					runNextImg();
 					
 			  }
-			}, imagenSegundosReproduccion*1000);
+			}, imagenSegundosReproduccion*1000);*/
 	}
 	
     @Override
