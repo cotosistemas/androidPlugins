@@ -238,7 +238,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				rlVideo.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {
-						if(tipo.equals(5))
+						if(videoView.isPlaying())
 							videoView.stopPlayback();					
 							
 						dialog.dismiss();
@@ -270,8 +270,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 						
 						if(tipo.equals(5))
 							runNextVideo();	
-						else
+						else{
+							videoView.stopPlayback();
 							runNextImg();
+						}
 						
 					}
 				});
