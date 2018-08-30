@@ -190,7 +190,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewHeader.setVisibility(View.VISIBLE);
 				webViewFooter.setVisibility(View.VISIBLE);
 			}*/
-			if(tipo.equals(5))
+			if(videoView.isPlaying())
 				videoView.stopPlayback();
 			dialog.dismiss();
 		}	
