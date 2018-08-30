@@ -368,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					runNextImg();
 					
 			  }
-			}, imagenSegundosReproduccion);
+			}, imagenSegundosReproduccion*1000);
 	}
 	
     @Override
