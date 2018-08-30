@@ -358,28 +358,30 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		webViewImage.setVisibility(View.VISIBLE);
 		videoView.setVisibility(View.GONE);
 			
-		try {
+		
 			final Handler handler = new Handler();
 			handler.postDelayed(new Runnable() {
 				@Override
 				public void run() {
-					indiceVideo++;		
-		
-					if(indiceVideo == videoArrJson.length())
-						indiceVideo = 0;
-					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
-					if(tipo.equals(5))
-						runNextVideo();	
-					else
-						runNextImg();						
+					try {
+						indiceVideo++;		
+			
+						if(indiceVideo == videoArrJson.length())
+							indiceVideo = 0;
+						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+						if(tipo.equals(5))
+							runNextVideo();	
+						else
+							runNextImg();	
+					} catch (JSONException e) {
+								e.printStackTrace();
+					}					
 				}
 			}, imagenSegundosReproduccion*1000);
 			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
+		
 	}
 	
     @Override
