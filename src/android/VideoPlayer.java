@@ -89,7 +89,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");	
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
-			indiceVideo++;
+			//indiceVideo++;
 			
 			String urls="";
 			String videoUrl="";
