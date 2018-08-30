@@ -193,10 +193,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			/*if(videoView.isPlaying())
 				videoView.stopPlayback();*/
 			
-			if(videoView.isPlaying()) {
-                    videoView.stop();
+			if(player.isPlaying()) {
+                 player.stop();
             }
-            videoView.release();
+            player.release();
 			dialog.dismiss();
 		}	
 	}
