@@ -232,6 +232,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.setVisibility(View.GONE);
 						
 			if(tipo.equals(5)){
+				Log.d(LOG_TAG, "Showing first video");
 				webViewImage.setVisibility(View.GONE);
 				videoView.setVisibility(View.VISIBLE);
 					
@@ -282,7 +283,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				videoView.start();
 			}else{				
 				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			*/
-				
+				Log.d(LOG_TAG, "Showing first image");
 				webViewImage.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {	
@@ -331,6 +332,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
 	public void runNextVideo(){
 		try{					
+			Log.d(LOG_TAG, "Showing next video");
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			if(imagenHeader != null && !imagenHeader.equals("") && !imagenHeader.equals("null")){
@@ -362,35 +364,35 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
 	public void runNextImg(){
-										
-				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
-				webViewImage.setVisibility(View.VISIBLE);
-				videoView.setVisibility(View.GONE);
-				
-				indiceVideo++;		
-				
-				if(indiceVideo == videoArrJson.length())
-					indiceVideo = 0;	
-					
-			   try {
-					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
-				
-				final Handler handler = new Handler();
-				handler.postDelayed(new Runnable() {
-				  @Override
-				  public void run() {
-																																						
-					if(tipo.equals(5))
-						runNextVideo();	
-					else
-						runNextImg();						
-				  }
-				}, imagenSegundosReproduccion*1000);
+		Log.d(LOG_TAG, "Showing next image");
+		webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
+		webViewImage.setVisibility(View.VISIBLE);
+		videoView.setVisibility(View.GONE);
+		
+		indiceVideo++;		
+		
+		if(indiceVideo == videoArrJson.length())
+			indiceVideo = 0;	
+			
+	   try {
+			tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+			urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+		  @Override
+		  public void run() {
+																																				
+			if(tipo.equals(5))
+				runNextVideo();	
+			else
+				runNextImg();						
+		  }
+		}, imagenSegundosReproduccion*1000);
 	}
 	
     @Override
