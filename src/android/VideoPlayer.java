@@ -252,14 +252,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					public void onCompletion(MediaPlayer mediaPlayer) {     
 						indiceVideo++;		
 										
-						if(indiceVideo == videoArrJson.length()){						
-							/*if(!hasToLoop){
-								videoView.stopPlayback();
-								dialog.dismiss();
-							}else{*/
-							indiceVideo = 0;									
-							//}
-						}
+						if(indiceVideo == videoArrJson.length())
+							indiceVideo = 0;					
 						
 						try {
 							tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
@@ -347,11 +341,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else
 				webViewFooter.setVisibility(View.GONE);
 			
-			indiceVideo++;		
-			tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");	
-			urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");			
-			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
-			
 			webViewImage.setVisibility(View.GONE);
 			videoView.setVisibility(View.VISIBLE);
 
@@ -368,31 +357,29 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
 		webViewImage.setVisibility(View.VISIBLE);
 		videoView.setVisibility(View.GONE);
-		
-		indiceVideo++;		
-		
-		if(indiceVideo == videoArrJson.length())
-			indiceVideo = 0;	
 			
-	   try {
-			tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-			urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-			imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+		try {
+			final Handler handler = new Handler();
+			handler.postDelayed(new Runnable() {
+				@Override
+				public void run() {
+					indiceVideo++;		
+		
+					if(indiceVideo == videoArrJson.length())
+						indiceVideo = 0;
+					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+					if(tipo.equals(5))
+						runNextVideo();	
+					else
+						runNextImg();						
+				}
+			}, imagenSegundosReproduccion*1000);
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-		final Handler handler = new Handler();
-		handler.postDelayed(new Runnable() {
-		  @Override
-		  public void run() {
-																																				
-			if(tipo.equals(5))
-				runNextVideo();	
-			else
-				runNextImg();						
-		  }
-		}, imagenSegundosReproduccion*1000);
 	}
 	
     @Override
