@@ -210,7 +210,14 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));	
 
-			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName()));							
+
+			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName
+			()));							
+			
+			webViewImage.getSettings().setLoadWithOverviewMode(true);
+			webViewImage.getSettings().setUseWideViewPort(true);
+			webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
 				webViewHeader.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+imageHeader+"></img></body>", "text/html", "utf-8", "");			
@@ -286,9 +293,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					}
 				});	
 				
-				webViewImage.getSettings().setLoadWithOverviewMode(true);
-				webViewImage.getSettings().setUseWideViewPort(true);
-				webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
+				
 				runNextImg();
 			}
 			
