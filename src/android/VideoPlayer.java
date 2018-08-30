@@ -358,11 +358,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				if(indiceVideo == videoArrJson.length())
 					indiceVideo = 0;	
 					
-				tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-				urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-				imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
+			   try {
+					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}
 				
-				/*final Handler handler = new Handler();
+				final Handler handler = new Handler();
 				handler.postDelayed(new Runnable() {
 				  @Override
 				  public void run() {
@@ -372,7 +376,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					else
 						runNextImg();						
 				  }
-				}, imagenSegundosReproduccion*1000);*/		
+				}, imagenSegundosReproduccion*1000);
 	}
 	
     @Override
