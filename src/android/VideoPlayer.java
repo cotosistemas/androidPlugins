@@ -238,7 +238,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				rlVideo.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {
-						videoView.stopPlayback();
+						if(tipo.equals(5))
+							videoView.stopPlayback();					
+							
 						dialog.dismiss();
 						return false;
 					}
@@ -246,7 +248,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				
 				videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 					@Override
-					public void onCompletion(MediaPlayer mediaPlayer) {              
+					public void onCompletion(MediaPlayer mediaPlayer) {     
+						indiceVideo++;		
+										
 						if(indiceVideo == videoArrJson.length()){						
 							/*if(!hasToLoop){
 								videoView.stopPlayback();
@@ -255,6 +259,9 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 							indiceVideo = 0;									
 							//}
 						}
+						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");	
+						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");			
+						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");		
 						if(tipo.equals(5))
 							runNextVideo();	
 						else
@@ -265,8 +272,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				Uri uri= Uri.parse(path);
 				videoView.setVideoURI(uri);
 				videoView.start();
-			}else{
-				Log.d(LOG_TAG, "Showing image " + urlPath);			
+			}else{				
 				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			*/
 				
 				webViewImage.setOnTouchListener(new View.OnTouchListener() {
