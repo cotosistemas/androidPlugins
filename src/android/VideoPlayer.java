@@ -346,29 +346,32 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
 	public void runNextImg(){
-			
-			webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
-			webViewImage.setVisibility(View.VISIBLE);
-			videoView.setVisibility(View.GONE);
-			
-			/*final Handler handler = new Handler();
-			handler.postDelayed(new Runnable() {
-			  @Override
-			  public void run() {
-				indiceVideo++;		
-				if(indiceVideo == videoArrJson.length())
-					indiceVideo = 0;																
-								
-				tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-				urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-				imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
-				if(tipo.equals(5))
-					runNextVideo();	
-				else
-					runNextImg();
-					
-			  }
-			}, imagenSegundosReproduccion*1000);*/
+			try{
+				webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
+				webViewImage.setVisibility(View.VISIBLE);
+				videoView.setVisibility(View.GONE);
+				
+				final Handler handler = new Handler();
+				handler.postDelayed(new Runnable() {
+				  @Override
+				  public void run() {
+					indiceVideo++;		
+					if(indiceVideo == videoArrJson.length())
+						indiceVideo = 0;																
+									
+					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");	
+					if(tipo.equals(5))
+						runNextVideo();	
+					else
+						runNextImg();
+						
+				  }
+				}, imagenSegundosReproduccion*1000);
+			catch(Exception ex){
+				
+			}
 	}
 	
     @Override
