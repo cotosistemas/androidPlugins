@@ -358,28 +358,27 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 		webViewImage.setVisibility(View.VISIBLE);
 		videoView.setVisibility(View.GONE);
 			
+		final Handler handler = new Handler();
+		handler.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					indiceVideo++;		
 		
-			final Handler handler = new Handler();
-			handler.postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						indiceVideo++;		
-			
-						if(indiceVideo == videoArrJson.length())
-							indiceVideo = 0;
-						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
-						if(tipo.equals(5))
-							runNextVideo();	
-						else
-							runNextImg();	
-					} catch (JSONException e) {
-								e.printStackTrace();
-					}					
-				}
-			}, imagenSegundosReproduccion*1000);
+					if(indiceVideo == videoArrJson.length())
+						indiceVideo = 0;
+					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+					imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+					if(tipo.equals(5))
+						runNextVideo();	
+					else
+						runNextImg();	
+				} catch (JSONException e) {
+					e.printStackTrace();
+				}					
+			}
+		}, imagenSegundosReproduccion*1000);
 			
 		
 	}
