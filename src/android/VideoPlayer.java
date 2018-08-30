@@ -259,9 +259,15 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 							indiceVideo = 0;									
 							//}
 						}
-						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");	
-						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");			
-						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");		
+						
+						try {
+							tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+							urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+							imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						
 						if(tipo.equals(5))
 							runNextVideo();	
 						else
