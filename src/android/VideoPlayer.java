@@ -230,7 +230,18 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else
 				webViewHeader.setVisibility(View.GONE);
 						
-			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));					
+			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));			
+
+			rlVideo.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View view, MotionEvent motionEvent) {
+					if(videoView.isPlaying())
+						videoView.stopPlayback();					
+						
+					dialog.dismiss();
+					return false;
+				}
+			});				
 			
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
@@ -245,17 +256,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewImage.setVisibility(View.GONE);
 				videoView.setVisibility(View.VISIBLE);
 					
-				rlVideo.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View view, MotionEvent motionEvent) {
-						if(videoView.isPlaying())
-							videoView.stopPlayback();					
-							
-						dialog.dismiss();
-						return false;
-					}
-				});	
-				
 				videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 					@Override
 					public void onCompletion(MediaPlayer mediaPlayer) {     
