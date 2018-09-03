@@ -257,9 +257,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			if(tipo.equals(5)){
 				webViewImage.setVisibility(View.GONE);
 				videoView.setVisibility(View.VISIBLE);
-					
-				
-				
+				runNextVideo();							
 			}else{				
 				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");*/
 				/*webViewImage.setOnTouchListener(new View.OnTouchListener() {
