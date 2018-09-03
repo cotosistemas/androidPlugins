@@ -261,7 +261,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					public void onCompletion(MediaPlayer mediaPlayer) {     
 						indiceVideo++;		
 										
-						if(indiceVideo == videoArrJson.length())
+						if(indiceVideo >= videoArrJson.length())
 							indiceVideo = 0;					
 						
 						try {
@@ -368,7 +368,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				try {
 					indiceVideo++;		
 		
-					if(indiceVideo == videoArrJson.length())
+					if(indiceVideo >= videoArrJson.length())
 						indiceVideo = 0;
 					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
 					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
