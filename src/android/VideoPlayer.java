@@ -260,13 +260,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				runNextVideo();							
 			}else{				
 				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");*/
-				/*webViewImage.setOnTouchListener(new View.OnTouchListener() {
+				webViewImage.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {	
 						dialog.dismiss();
 						return false;
 					}
-				});	*/
+				});	
 				
 				runNextImg();
 			}
