@@ -214,14 +214,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			
 			webViewHeader = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_header", "id", cordova.getActivity().getPackageName()));	
 
+
 			webViewImage = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview", "id", cordova.getActivity().getPackageName
 			()));							
 			
 			webViewImage.getSettings().setLoadWithOverviewMode(true);
 			webViewImage.getSettings().setUseWideViewPort(true);
 			webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
-			
-			
 				
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
@@ -232,18 +231,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else
 				webViewHeader.setVisibility(View.GONE);
 						
-			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));			
-
-			rlVideo.setOnTouchListener(new View.OnTouchListener() {
-				@Override
-				public boolean onTouch(View view, MotionEvent motionEvent) {
-					if(videoView.isPlaying())
-						videoView.stopPlayback();					
-						
-					dialog.dismiss();
-					return false;
-				}
-			});				
+			webViewFooter = (WebView) dialog.findViewById(cordova.getActivity().getResources().getIdentifier("videoplayer_imageview_footer", "id", cordova.getActivity().getPackageName()));					
 			
 			if(imageFooter != null && !imageFooter.equals("") && !imageFooter.equals("null")){	
 				webViewFooter.setVisibility(View.VISIBLE);			
@@ -255,18 +243,59 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewFooter.setVisibility(View.GONE);
 						
 			if(tipo.equals(5)){
+				Log.d(LOG_TAG, "Showing first video");
 				webViewImage.setVisibility(View.GONE);
 				videoView.setVisibility(View.VISIBLE);
-				runNextVideo();							
+					
+				rlVideo.setOnTouchListener(new View.OnTouchListener() {
+					@Override
+					public boolean onTouch(View view, MotionEvent motionEvent) {
+						if(videoView.isPlaying())
+							videoView.stopPlayback();					
+							
+						dialog.dismiss();
+						return false;
+					}
+				});	
+				
+				videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+					@Override
+					public void onCompletion(MediaPlayer mediaPlayer) {     
+						indiceVideo++;		
+										
+						if(indiceVideo == videoArrJson.length())
+							indiceVideo = 0;					
+						
+						try {
+							tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+							urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+							imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+						} catch (JSONException e) {
+							e.printStackTrace();
+						}
+						
+						if(tipo.equals(5))
+							runNextVideo();	
+						else{
+							videoView.stopPlayback();
+							runNextImg();
+						}
+						
+					}
+				});
+				Uri uri= Uri.parse(path);
+				videoView.setVideoURI(uri);
+				videoView.start();
 			}else{				
-				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");*/
-				/*webViewImage.setOnTouchListener(new View.OnTouchListener() {
+				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");			*/
+				webViewImage.setOnTouchListener(new View.OnTouchListener() {
 					@Override
 					public boolean onTouch(View view, MotionEvent motionEvent) {	
 						dialog.dismiss();
 						return false;
 					}
-				});	*/
+				});	
+				
 				
 				runNextImg();
 			}
@@ -289,31 +318,6 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				}
 			});		
 			
-			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-				@Override
-				public void onCompletion(MediaPlayer mediaPlayer) {     
-					indiceVideo++;		
-									
-					if(indiceVideo >= videoArrJson.length())
-						indiceVideo = 0;					
-					
-					try {
-						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
-					} catch (JSONException e) {
-						e.printStackTrace();
-					}
-					
-					if(tipo.equals(5))
-						runNextVideo();	
-					else{
-						//videoView.stopPlayback();
-						runNextImg();						
-					}
-				}
-			});
-			
 			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 			lp.copyFrom(dialog.getWindow().getAttributes());
 			lp.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -330,7 +334,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
 	public void runNextVideo(){
 		try{					
-			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");			
+			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");								
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
 			if(imagenHeader != null && !imagenHeader.equals("") && !imagenHeader.equals("null")){
 				webViewHeader.setVisibility(View.VISIBLE);
@@ -367,7 +371,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				try {
 					indiceVideo++;		
 		
-					if(indiceVideo >= videoArrJson.length())
+					if(indiceVideo == videoArrJson.length())
 						indiceVideo = 0;
 					tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
 					urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
@@ -413,10 +417,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @Override
     public void onCompletion(MediaPlayer mp) {
         Log.d(LOG_TAG, "MediaPlayer completed");
-		if(mp != null){
-			mp.reset();
+		if(mp != null)
 			mp.release();
-		}
 		if(dialog != null)
 			dialog.dismiss();
     }
