@@ -221,30 +221,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			webViewImage.getSettings().setUseWideViewPort(true);
 			webViewImage.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 			
-			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-					@Override
-					public void onCompletion(MediaPlayer mediaPlayer) {     
-						indiceVideo++;		
-										
-						if(indiceVideo >= videoArrJson.length())
-							indiceVideo = 0;					
-						
-						try {
-							tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
-							urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
-							imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
-						} catch (JSONException e) {
-							e.printStackTrace();
-						}
-						
-						if(tipo.equals(5))
-							runNextVideo();	
-						else{
-							videoView.stopPlayback();
-							runNextImg();						
-						}
-					}
-				});
+			
 				
 			if(imageHeader != null && !imageHeader.equals("") && !imageHeader.equals("null")){	
 				webViewHeader.setVisibility(View.VISIBLE);			
@@ -313,6 +290,31 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					return false;
 				}
 			});		
+			
+			videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				@Override
+				public void onCompletion(MediaPlayer mediaPlayer) {     
+					indiceVideo++;		
+									
+					if(indiceVideo >= videoArrJson.length())
+						indiceVideo = 0;					
+					
+					try {
+						tipo = videoArrJson.getJSONObject(indiceVideo).getInt("Tipo");
+						urlPath = videoArrJson.getJSONObject(indiceVideo).getString("PathCompleto");
+						imagenSegundosReproduccion = videoArrJson.getJSONObject(indiceVideo).getInt("SegundosReproduccion");
+					} catch (JSONException e) {
+						e.printStackTrace();
+					}
+					
+					if(tipo.equals(5))
+						runNextVideo();	
+					else{
+						videoView.stopPlayback();
+						runNextImg();						
+					}
+				}
+			});
 			
 			WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
 			lp.copyFrom(dialog.getWindow().getAttributes());
