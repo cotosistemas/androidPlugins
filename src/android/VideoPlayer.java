@@ -413,8 +413,10 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     @Override
     public void onCompletion(MediaPlayer mp) {
         Log.d(LOG_TAG, "MediaPlayer completed");
-		if(mp != null)
+		if(mp != null){
+			mp.reset();
 			mp.release();
+		}
 		if(dialog != null)
 			dialog.dismiss();
     }
