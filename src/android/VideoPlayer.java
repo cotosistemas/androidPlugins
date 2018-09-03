@@ -308,7 +308,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 					if(tipo.equals(5))
 						runNextVideo();	
 					else{
-						videoView.stopPlayback();
+						//videoView.stopPlayback();
 						runNextImg();						
 					}
 				}
