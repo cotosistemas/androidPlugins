@@ -15,12 +15,12 @@
 		android:layout_alignParentTop="true"
 		android:scrollbars="none"/>
 		
-	<WebView
+  <WebView
         android:id="@+id/videoplayer_imageview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-		android:layout_alignParentTop="true"
-		android:scrollbars="none"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:scrollbars="none"/>
 		
 	<VideoView
 		android:id="@+id/layout_video_viewvideo"
