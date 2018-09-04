@@ -253,21 +253,20 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 				webViewHeader.getSettings().setDefaultZoom(WebSettings.ZoomDensity.FAR);
 			}else
 				webViewFooter.setVisibility(View.GONE);
+			
+			webViewImage.setOnTouchListener(new View.OnTouchListener() {
+				@Override
+				public boolean onTouch(View view, MotionEvent motionEvent) {	
+					dialog.dismiss();
+					return false;
+				}
+			});	
 						
 			if(tipo.equals(5)){
 				webViewImage.setVisibility(View.GONE);
 				videoView.setVisibility(View.VISIBLE);
 				runNextVideo();							
 			}else{				
-				/*webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");*/
-				webViewImage.setOnTouchListener(new View.OnTouchListener() {
-					@Override
-					public boolean onTouch(View view, MotionEvent motionEvent) {	
-						dialog.dismiss();
-						return false;
-					}
-				});	
-				
 				runNextImg();
 			}
 			
@@ -417,8 +416,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			mp.reset();
 			mp.release();
 		}
-		if(dialog != null)
-			dialog.dismiss();
+		/*if(dialog != null)
+			dialog.dismiss();*/
     }
 
     @Override
