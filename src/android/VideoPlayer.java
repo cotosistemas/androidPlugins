@@ -67,12 +67,13 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
      * @return              A PluginResult object with a status and message.
      */
     public boolean execute(String action, CordovaArgs args, CallbackContext callbackContext) throws JSONException {
+		Log.i(LOG_TAG, "VIDEOPLAYER: Ingreso al plugin video");
         if (action.equals("play")) {
             this.callbackContext = callbackContext;
 
             CordovaResourceApi resourceApi = webView.getResourceApi();
             String target = args.getString(0);
-			Log.v(LOG_TAG, target);
+		
 			
 			//JSONObject obj = new JSONObject(target);
 			videoArrJson = new JSONArray(target);			
@@ -263,8 +264,8 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			});	
 						
 			if(tipo.equals(5)){
-				webViewImage.setVisibility(View.GONE);
-				videoView.setVisibility(View.VISIBLE);
+				/*webViewImage.setVisibility(View.GONE);
+				videoView.setVisibility(View.VISIBLE);*/
 				runNextVideo();							
 			}else{				
 				runNextImg();
@@ -328,6 +329,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
     }
 	
 	public void runNextVideo(){
+		Log.i(LOG_TAG, "VIDEOPLAYER: runNextVideo");
 		try{					
 			imagenHeader = videoArrJson.getJSONObject(indiceVideo).getString("ImageHeaderPath");			
 			imagenFooter = videoArrJson.getJSONObject(indiceVideo).getString("ImageFooterPath");	
@@ -355,6 +357,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	}
 	
 	public void runNextImg(){
+		Log.i(LOG_TAG, "VIDEOPLAYER: runNextImg");
 		webViewImage.loadDataWithBaseURL("file:///android_asset/", "<html><body style='margin:0;padding:0;' bgcolor=\"white\"> <img src="+urlPath+"></img></body>", "text/html", "utf-8", "");		
 		webViewImage.setVisibility(View.VISIBLE);
 		videoView.setVisibility(View.GONE);
@@ -386,7 +389,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 	
     @Override
     public boolean onError(MediaPlayer mp, int what, int extra) {
-        Log.e(LOG_TAG, "MediaPlayer.onError(" + what + ", " + extra + ")");
+        Log.e(LOG_TAG, "VIDEOPLAYER: MediaPlayer.onError(" + what + ", " + extra + ")");
         dialog.dismiss();
         return false;
     }
@@ -411,7 +414,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     @Override
     public void onCompletion(MediaPlayer mp) {
-        Log.d(LOG_TAG, "MediaPlayer completed");
+        Log.i(LOG_TAG, "VIDEOPLAYER: MediaPlayer completed");
 		if(mp != null){
 			mp.reset();
 			mp.release();
@@ -422,7 +425,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     @Override
     public void onDismiss(DialogInterface dialog) {
-        Log.d(LOG_TAG, "Dialog dismissed");
+        Log.i(LOG_TAG, "VIDEOPLAYER: Dialog dismissed");
         if (callbackContext != null) {
             PluginResult result = new PluginResult(PluginResult.Status.OK);
             result.setKeepCallback(false); // release status callback in JS side
