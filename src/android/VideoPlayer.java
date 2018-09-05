@@ -345,7 +345,7 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 			}else
 				webViewFooter.setVisibility(View.GONE);
 			
-			webViewImage.setVisibility(View.VISIBLE);
+			webViewImage.setVisibility(View.GONE);
 			videoView.setVisibility(View.VISIBLE);
 
 			Uri uri= Uri.parse(urlPath);
