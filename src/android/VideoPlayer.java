@@ -396,16 +396,16 @@ public class VideoPlayer extends CordovaPlugin implements OnCompletionListener, 
 
     @Override
     public void onPrepared(MediaPlayer mp) {
-		mp.setOnInfoListener(new MediaPlayer.OnInfoListener() {
+		videoView.setOnInfoListener(new MediaPlayer.OnInfoListener() {
 			@Override
 			public boolean onInfo(MediaPlayer mp, int what, int extra) {				
 				if (what == MediaPlayer.MEDIA_INFO_BUFFERING_START){									
-					webViewHeader.setVisibility(View.GONE);								
-					webViewFooter.setVisibility(View.GONE);
+					videoView.setVisibility(View.GONE);								
+					webViewImage.setVisibility(View.VISIBLE);
 				}							
 				if (what == MediaPlayer.MEDIA_INFO_BUFFERING_END){
-					webViewHeader.setVisibility(View.VISIBLE);
-					webViewFooter.setVisibility(View.VISIBLE);
+					videoView.setVisibility(View.VISIBLE);								
+					webViewImage.setVisibility(View.GONE);
 				}
 				return false;
 			}
